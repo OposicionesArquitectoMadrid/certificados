@@ -52,11 +52,12 @@ function customDelay(ms) {
    doc.image('./Diseño fondo.jpg', 0, 0, { width: 612, height: 792 });
    
 // Agregar los textos con posiciones fijas
-doc.font(pathToCalibri).fillColor('black').fontSize(14).text('texto del certificado de inscripción', 200, 200);
-doc.font(pathToCalibri).fillColor('black').fontSize(14).text(`Fecha que escribe el usuario: ${formattedDate}`, 200, 240);
-doc.font(pathToCalibri).fillColor('black').fontSize(14).text(`Nombre del alumno: ${student.ALUMNO}`, 200, 280);
-doc.font(pathToCalibri).fillColor('black').fontSize(14).text(`DNI: ${student.DNI}`, 200, 320);
-doc.font(pathToCalibri).fillColor('black').fontSize(14).text(`Nombre del curso: ${student.CURSO}`, 200, 360);
+doc.font(pathToCalibri).fillColor('black').fontSize(12).text(`Que Don/Doña ${student.ALUMNO} con DNI ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ... , organizado por la academia de Oposiciones Arquitectos, este curso se imparte desde FECHA..., ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de TOTAL DE HORAS de clases Streaming.
+
+
+
+Y para que conste, firma en Madrid a ${formattedDate}`, 120, 250);
+
 
 // Finalizar el PDF
 doc.end();
