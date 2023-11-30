@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Oposiciones Arquitectos Madrid Certificados</title>
+  <style>
+    /* Estilos para simular la consola */
+    .console {
+      background-color: #1E1E1E;
+      color: #FFFFFF;
+      font-family: monospace;
+      padding: 10px;
+      border: 1px solid #CCCCCC;
+      width: 80%;
+      height: 200px;
+      overflow-y: auto;
+      margin-top: 20px; /* Agrega espacio arriba de la consola */
+    }
+
+    /* Estilos para el contenedor principal */
+    #container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Estilos para los elementos del formulario */
+    label {
+      margin-top: 10px; /* Agrega espacio arriba de cada label */
+    }
+
+    input[type="number"],
+    input[type="file"],
+    button {
+      margin-top: 5px; /* Agrega espacio arriba de los input y el botón */
+    }
+
+    button {
+      padding: 12px 27px; /* Aumenta el tamaño del botón */
+      font-size: 16px;
+    }
+
+    /* Estilos para colocar elementos uno al lado del otro */
+    .flex-container {
+      display: flex;
+      align-items: center;
+    }
+
+    .flex-item {
+      margin-right: 10px; /* Agrega espacio entre elementos */
+    }
+
+    .margin-button {
+      margin-top: 30px;
+  
+    
+    }
+  </style>
+</head>
+<body>
+  <div id="container">
+    <h2>Datos alumnos/as y Certificados</h2>
+  
+
+      <div class="flex-item">
+      <label for="dateInput" style="margin-top: 20px; font-size: 18px;">Fecha:</label>
+      <input type="date" id="dateInput" style="margin-top: 10px; padding: 7px;">
+      </div>
+<!-- 
+      
+      <div class="flex-item">
+        <label for="monthInput" style="margin-top: 20px; font-size: 18px;">Mes de facturación:</label>
+        <input type="text" id="monthInput" style="margin-top: 10px; padding: 7px;">
+        </div> -->
+
+      <div class="flex-item">
+        <label for="jsonFileInput" style="margin-top: 20px; font-size: 18px;">Seleccione un archivo JSON:</label>
+        <input type="file" id="jsonFileInput" style="margin-top: 10px; padding: 10px;">
+      </div>
+
+      </div>
+      <div class="flex-item" style="text-align: left;">
+        <button onclick="loadData()" style="margin-right: 40px; margin-top: 20px;">Cargar datos</button>
+      </div>
+   
+
+    <!-- Elemento para simular la consola -->
+    <div id="console" class="console"></div>
+
+  </div>
+
+  <div class="margin-button">
+    <div class="flex-container" style="justify-content: center;">
+      <div class="flex-item">
+      <button onclick="selectDirectoryAndGeneratePDFs()" style="margin-left: 20px; margin-right: 20px;">Generar y enviar certificado de inscripción</button>
+      </div>
+ </div>
+
+  <script>
+   
+    let dateInputGlobal = ''; // Variable global para almacenar la fecha
+
+
+  // Modifica la función loadData() para obtener la fecha del campo de entrada en index.html
+function loadData() {
+  const fileInput = document.getElementById('jsonFileInput');
+  const file = fileInput.files[0];
+ 
+
+  const dateInput = document.getElementById('dateInput').valueAsDate; // Obtiene la fecha del campo de entrada como un objeto Date
+
+
+  if (file && dateInput !== '') {
+     // Formatea la fecha en el formato deseado (dd/mm/yyyy)
+     const formattedDate = dateInput.toLocaleDateString('es-ES');
+
+    const reader = new FileReader();
+
+    reader.onload = function(event) {
+      const jsonContent = event.target.result;
+      const data = {
+        jsonContent: jsonContent,
+      
+        dateInput: formattedDate, // Usa la fecha formateada
+    
+      };
+
+      dateInputGlobal = formattedDate; // Actualiza la fecha global
+ 
+
+    
+      // Después de definir dateInputGlobal
+     window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
+   
+
+      // Envía el contenido JSON, el número de factura y la fecha al proceso principal (main.js)
+      window.ipcRenderer.send('load-data', data);
+
+      // Mostrar el resultado en la consola personalizada
+      const consoleElement = document.getElementById('console');
+      const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}`;
+      consoleElement.innerText = message;
+    };
+  
+
+    reader.readAsText(file);
+  } else {
+    console.error('Error: Por favor, seleccione un archivo JSON, y seleccione una fecha.');
+  }
+}
+
+
+    // Nueva función para seleccionar directorio y generar los PDFs
+    function selectDirectoryAndGeneratePDFs() {
+      // Envía el evento para seleccionar el directorio antes de generar los PDFs
+      window.ipcRenderer.send('select-directory')
+    }
+
+ 
+  </script>
+</body>
+</html>

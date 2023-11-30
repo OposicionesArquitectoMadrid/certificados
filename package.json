@@ -1,0 +1,26 @@
+{
+  "name": "interfaz-facturacion",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "pack": "electron-packager . MyApp --platform=win32 --arch=x64 --out=dist"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "date-fns": "^2.30.0",
+    "dotenv": "^16.3.1",
+    "exceljs": "^4.3.0",
+    "google-auth-library": "^9.1.0",
+    "nodemailer": "^6.9.5",
+    "nodemailer-smtp-transport": "^2.7.4",
+    "pdfkit": "^0.13.0"
+  },
+  "devDependencies": {
+    "electron": "^25.3.1",
+    "electron-packager": "^14.0.0"
+  }
+}
