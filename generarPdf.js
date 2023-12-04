@@ -52,11 +52,10 @@ function customDelay(ms) {
    doc.image('./Diseño fondo.jpg', 0, 0, { width: 612, height: 792 });
    
 // Agregar los textos con posiciones fijas
-doc.font(pathToCalibri).fillColor('black').fontSize(12).text(`Que Don/Doña ${student.ALUMNO} con DNI ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ... , organizado por la academia de Oposiciones Arquitectos, este curso se imparte desde FECHA..., ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de TOTAL DE HORAS de clases Streaming.
+doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11).text(`Que Don/Doña ${student.ALUMNO} con DNI ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ... , organizado por la academia de Oposiciones Arquitectos, este curso se imparte desde FECHA..., ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de TOTAL DE HORAS de clases Streaming.
 
 
-
-Y para que conste, firma en Madrid a ${formattedDate}`, 120, 250);
+Y para que conste, firma en Madrid a ${formattedDate}`, 110, 260, {width: 400});
 
 
 // Finalizar el PDF
@@ -68,7 +67,7 @@ doc.end();
     const invoice = `${student.ALUMNO}_certificado.pdf`;
     const recipient = student.EMAIL;
     const subject = 'Certificado';
-    const body = `Estimado/a ${student.ALUMNO}, adjunto encontrarás el certificado ....`
+    const body = `Estimado/a ${student.ALUMNO}, adjunto encontrarás tu certificado. Un cordial saludo`
     
       ;
 
