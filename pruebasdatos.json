@@ -25,7 +25,7 @@
 "TOTAL A PAGAR":"80.00",
 "CURSOACTUAL":"A HPE 2022",
 "DESCRIPCION":"Mensualidad correspondiente a MAY-2023.",
-"CURSO":"Preparación de las oposiciones de Arquitecto para la Hacienda Pública de..."
+"CURSO":"Preparación de las oposiciones de Arquitecto para la Hacienda Pública"
 },
 { 
 "ALUMNO":"GIMENA MOTTO1",
@@ -39,7 +39,7 @@
 "TOTAL A PAGAR":"75.00",
 "CURSOACTUAL":"A HPE 2022",
 "DESCRIPCION":"Mensualidad correspondiente a AGO-2023",
-"CURSO":"concepto ejemplo"
+"CURSO":"nombre del curso ejemplo"
 }
   
 ]

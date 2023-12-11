@@ -66,6 +66,11 @@
       <label for="dateInput" style="margin-top: 20px; font-size: 18px;">Fecha:</label>
       <input type="date" id="dateInput" style="margin-top: 10px; padding: 7px;">
       </div>
+
+      <div class="flex-item">
+        <label for="userInput" style="margin-top: 20px; font-size: 18px;">dirigido a Arquitectos:</label>
+        <input type="text" id="userInput" style="margin-top: 10px; padding: 7px;">
+      </div>
 <!-- 
       
       <div class="flex-item">
@@ -99,6 +104,7 @@
   <script>
    
     let dateInputGlobal = ''; // Variable global para almacenar la fecha
+    let userInputGlobal = ''
 
 
   // Modifica la función loadData() para obtener la fecha del campo de entrada en index.html
@@ -111,27 +117,29 @@ function loadData() {
 
 
   if (file && dateInput !== '') {
-     // Formatea la fecha en el formato deseado (dd/mm/yyyy)
-     const formattedDate = dateInput.toLocaleDateString('es-ES');
-
+    
+     const formattedDate = dateInput.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
     const reader = new FileReader();
 
     reader.onload = function(event) {
       const jsonContent = event.target.result;
+      const userInput = document.getElementById('userInput').value;
       const data = {
         jsonContent: jsonContent,
-      
+        userInput: userInput,
         dateInput: formattedDate, // Usa la fecha formateada
     
       };
 
       dateInputGlobal = formattedDate; // Actualiza la fecha global
+      userInputGlobal = userInput
  
 
     
       // Después de definir dateInputGlobal
      window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
-   
+     console.log('Valor de userInput en loadData:', userInput);
+     window.ipcRenderer.send('set-user-input-global', userInputGlobal);
 
       // Envía el contenido JSON, el número de factura y la fecha al proceso principal (main.js)
       window.ipcRenderer.send('load-data', data);

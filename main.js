@@ -10,7 +10,7 @@ let students = []
 
 let selectedDirectoryForEmails = null; // Variable para almacenar el directorio seleccionado para los correos
 let dateInputGlobal = ''; // Variable global para almacenar la fecha
-
+let userInputGlobal = ''; // Variable global para almacenar userInput
 
 function createWindow() {
 
@@ -57,7 +57,7 @@ app.on('activate', () => {
 
 // para recibir el contenido JSON y el número de factura
 ipcMain.on('load-data', (event, data) => {
-  const { jsonContent, dateInput} = data;
+  const { jsonContent, dateInput, userInput} = data;
 
   try {
     students = JSON.parse(jsonContent)
@@ -65,6 +65,7 @@ ipcMain.on('load-data', (event, data) => {
     // Almacena el número 
 
     console.log('Fecha:', dateInput); // Muestra la fecha en la consola
+    console.log('dirigido a arquitectos:', userInput)
 
     console.log('Datos del JSON:', students) //muestra los datos en la consola
   } catch (error) {
@@ -79,6 +80,11 @@ ipcMain.on('set-date-input-global', (event, dateInput) => {
  
 });
 
+// para recibir el userInput desde el proceso de renderizado
+ipcMain.on('set-user-input-global', (event, userInput) => {
+  userInputGlobal = userInput;
+  console.log('Valor de userInput después de set-user-input-global:', userInputGlobal);
+});
 
 // mostrar el diálogo de selección de directorio al recibir el evento 'select-directory'
 ipcMain.on('select-directory', (event) => {
@@ -89,8 +95,8 @@ ipcMain.on('select-directory', (event) => {
     if (!result.canceled && result.filePaths.length > 0) {
       const selectedDirectory = result.filePaths[0]
       if (students.length > 0) {
- 
-        generarPDF(students, selectedDirectory, dateInputGlobal) // Llamamos a la función para generar los PDFs
+        console.log('Valor de userInput antes de llamar a generarPDF:', userInputGlobal);
+        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal) // Llamamos a la función para generar los PDFs
       } else {
         console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')
       }
