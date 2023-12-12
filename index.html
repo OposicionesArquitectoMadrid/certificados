@@ -71,12 +71,7 @@
         <label for="userInput" style="margin-top: 20px; font-size: 18px;">dirigido a Arquitectos:</label>
         <input type="text" id="userInput" style="margin-top: 10px; padding: 7px;">
       </div>
-<!-- 
-      
-      <div class="flex-item">
-        <label for="monthInput" style="margin-top: 20px; font-size: 18px;">Mes de facturación:</label>
-        <input type="text" id="monthInput" style="margin-top: 10px; padding: 7px;">
-        </div> -->
+
 
       <div class="flex-item">
         <label for="jsonFileInput" style="margin-top: 20px; font-size: 18px;">Seleccione un archivo JSON:</label>
@@ -114,7 +109,7 @@ function loadData() {
  
 
   const dateInput = document.getElementById('dateInput').valueAsDate; // Obtiene la fecha del campo de entrada como un objeto Date
-
+  const userInput = document.getElementById('userInput').value;
 
   if (file && dateInput !== '') {
     
@@ -123,7 +118,7 @@ function loadData() {
 
     reader.onload = function(event) {
       const jsonContent = event.target.result;
-      const userInput = document.getElementById('userInput').value;
+     
       const data = {
         jsonContent: jsonContent,
         userInput: userInput,

@@ -83,7 +83,7 @@ ipcMain.on('set-date-input-global', (event, dateInput) => {
 // para recibir el userInput desde el proceso de renderizado
 ipcMain.on('set-user-input-global', (event, userInput) => {
   userInputGlobal = userInput;
-  console.log('Valor de userInput después de set-user-input-global:', userInputGlobal);
+  console.log('Valor de userInput después de set-user-input-global:', userInput);
 });
 
 // mostrar el diálogo de selección de directorio al recibir el evento 'select-directory'
