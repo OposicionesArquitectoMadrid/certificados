@@ -9,4 +9,3 @@ contextBridge.exposeInMainWorld('ipcRenderer', ipcRenderer);
 window.loadJSONData = (jsonContent) => {
   window.ipcRenderer.send('load-json-file', jsonContent)
 }
-

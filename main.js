@@ -105,4 +105,3 @@ ipcMain.on('select-directory', (event) => {
     console.error('Error al mostrar el diálogo de selección de directorio:', err)
   })
 })
-

@@ -1,45 +1,30 @@
 [
     { 
-"ALUMNO":"ENRIQUE ALVARO",
-"DIRECCION":"Calle Rosario Central",
-"PROVINCIA":"Madrid",
-"CIUDAD":"Madrid",
-"CODIGOPOSTAL":"28010",
-"DNI":"00123450",
-"ENVIAR":"SI",
-"EMAIL":"soporte.oposicionesarquitectos@gmail.com",
-"TOTAL A PAGAR":"185.00",
-"CURSOACTUAL":"A HPE 2022",
-"DESCRIPCION":"Mensualidad correspondiente a AGO-2023",
-"CURSO":"Preparación de las oposiciones de Arquitecto para la Hacienda Pública del Estado."
-},
-{ 
-"ALUMNO":"GIMENA MOTTO",
-"DIRECCION":"Calle Sierra, 2do 1",
-"PROVINCIA":"Madrid",
-"CIUDAD":"Madrid",
-"CODIGOPOSTAL":"28010",
-"DNI":"00XXXX00",
-"ENVIAR":"NO",
-"EMAIL":"soporte.oposicionesarquitectos@gmail.com",
-"TOTAL A PAGAR":"80.00",
-"CURSOACTUAL":"A HPE 2022",
-"DESCRIPCION":"Mensualidad correspondiente a MAY-2023.",
-"CURSO":"Preparación de las oposiciones de Arquitecto para la Hacienda Pública"
-},
-{ 
-"ALUMNO":"GIMENA MOTTO1",
-"DIRECCION":"Calle Sandoval, 2",
-"PROVINCIA":"Madrid",
-"CIUDAD":"Madrid",
-"CODIGOPOSTAL":"28010",
-"DNI":"00XXXX00",
-"ENVIAR":"SI",
-"EMAIL":"soporte.oposicionesarquitectos@gmail.com",
-"TOTAL A PAGAR":"75.00",
-"CURSOACTUAL":"A HPE 2022",
-"DESCRIPCION":"Mensualidad correspondiente a AGO-2023",
-"CURSO":"nombre del curso ejemplo"
-}
+        "ALUMNO":"GIMENA MOTTO",
+        "DNI":"509XX00D",
+        "CURSO":"ARQUITECTO AYUNTAMIENTO DE MADRID 2022-2023",
+        "DIRIGIDO_A":"Arquitectos superiores",
+        "FECHA_INiCIO":"2022-10-17",
+        "FECHA_FIN":"2023-10-31",
+        "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
+        },
+        { 
+            "ALUMNO":"GIMENA MOTTO2",
+            "DNI":"509XX00D",
+            "CURSO":"ARQUITECTO AYUNTAMIENTO DE MADRID 2022-2023",
+            "DIRIGIDO_A":"Arquitectos superiores",
+            "FECHA_INiCIO":"2022-10-17",
+            "FECHA_FIN":"2023-10-31",
+            "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
+            },
+            { 
+                "ALUMNO":"GIMENA MOTTO3",
+                "DNI":"509XX00D",
+                "CURSO":"ARQUITECTO AYUNTAMIENTO DE MADRID 2022-2023",
+                "DIRIGIDO_A":"Arquitectos superiores",
+                "FECHA_INiCIO":"2022-10-17",
+                "FECHA_FIN":"2023-10-31",
+                "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
+                }
   
 ]
