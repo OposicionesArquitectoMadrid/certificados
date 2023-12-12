@@ -61,7 +61,11 @@ ipcMain.on('load-data', (event, data) => {
 
   try {
     students = JSON.parse(jsonContent)
-
+    // const tipoDeFechaInicio = typeof students[0].FECHA_INiCIO;
+    // console.log('Tipo de dato de FECHA_INiCIO:', tipoDeFechaInicio);
+    // const tipoDeFechaFin = typeof students[0].FECHA_FIN;
+    // console.log('Tipo de dato de FECHA_INiCIO:', tipoDeFechaFin);
+    
     // Almacena el número 
 
     console.log('Fecha:', dateInput); // Muestra la fecha en la consola

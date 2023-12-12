@@ -51,13 +51,11 @@ function customDelay(ms) {
    // todo lo q es contenido del pdf
    //pagina membretada (fondo)
 
-   doc.image('./Diseño fondo.jpg', 0, 0, { width: 612, height: 792 });
-   console.log('userInput en generarPDF:', userInput);
-console.log('userInput tipo:', typeof userInput);
-console.log('userInput longitud:', userInput.length);
+   doc.image('./Administradora.jpg', 0, 0, { width: 612, height: 792 });
+
 
 // Agregar los textos con posiciones fijas
-doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11).text(`Que Don/Doña ${student.ALUMNO} con DNI ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a Arquitectos ${userInput}, organizado por la academia de Oposiciones Arquitectos, este curso se imparte desde FECHA..., ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de TOTAL DE HORAS de clases Streaming.
+doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11).text(`Que Don/Doña ${student.ALUMNO} con DNI ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de Oposiciones Arquitectos, este curso se imparte desde el ${student.FECHA_INICIO}, ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
 
 
 Y para que conste, firma en Madrid a ${formattedDate}`, 110, 260, {width: 400});
