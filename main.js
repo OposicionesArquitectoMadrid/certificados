@@ -91,7 +91,7 @@ ipcMain.on('set-user-input-global', (event, userInput) => {
 });
 
 // mostrar el diálogo de selección de directorio al recibir el evento 'select-directory'
-ipcMain.on('select-directory', (event) => {
+ipcMain.on('select-directory', (event, certType) => {
   dialog.showOpenDialog(mainWindow, {
     properties: ['openDirectory'],
     title: 'Seleccione un directorio para guardar los PDFs',
@@ -100,7 +100,7 @@ ipcMain.on('select-directory', (event) => {
       const selectedDirectory = result.filePaths[0]
       if (students.length > 0) {
         console.log('Valor de userInput antes de llamar a generarPDF:', userInputGlobal);
-        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal) // Llamamos a la función para generar los PDFs
+        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType) // Llamamos a la función para generar los PDFs
       } else {
         console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')
       }

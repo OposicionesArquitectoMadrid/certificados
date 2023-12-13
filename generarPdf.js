@@ -13,7 +13,7 @@ function customDelay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   
-  async function generarPDF(students, selectedDirectory, dateInput, userInput) {
+  async function generarPDF(students, selectedDirectory, dateInput, userInput, certType) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -43,22 +43,56 @@ function customDelay(ms) {
 //formatear fecha
         const formattedDate = dateInput
    
-
-   
-    
     doc.pipe(fs.createWriteStream(outputPath))
 
    // todo lo q es contenido del pdf
-   //pagina membretada (fondo)
+   //pagina membretada (fondo) común para todos
 
    doc.image('./Administradora.jpg', 0, 0, { width: 612, height: 792 });
 
+   if (certType === 'inscripción') {
+    // Certificado de inscripción
+    doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
+  
+    // Parte 1 del texto con el nombre del alumno en negrita
+    doc.font(pathToCalibri).text(`Que Don/Doña `, 100, 300, { continued: true }); 
+    doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
+    doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de `, { continued: true });
+    
+    // "Oposiciones Arquitectos" en negrita
+    doc.font(pathToCalibriBold).text('Oposiciones Arquitectos', { continued: true });
+  
+    // Parte 2 del texto
+    doc.font(pathToCalibri).text(`, este curso se imparte desde el ${student.FECHA_INICIO}, ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
 
-// Agregar los textos con posiciones fijas
-doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11).text(`Que Don/Doña ${student.ALUMNO} con DNI ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de Oposiciones Arquitectos, este curso se imparte desde el ${student.FECHA_INICIO}, ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
 
 
-Y para que conste, firma en Madrid a ${formattedDate}`, 110, 260, {width: 400});
+Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'justify', indent: 10 });
+}
+
+
+else if (certType === 'realizado') {
+  // Certificado de curso realizado
+  doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
+
+  // Parte 1 del texto con el nombre del alumno en negrita
+  doc.font(pathToCalibri).text(`Que Don/Doña `, 100, 300, { continued: true }); 
+  doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
+  doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de `, { continued: true });
+  
+  // "Oposiciones Arquitectos" en negrita
+  doc.font(pathToCalibriBold).text('Oposiciones Arquitectos', { continued: true });
+
+  // Parte 2 del texto
+  doc.font(pathToCalibri).text(`, e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+
+Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
+
+Se adjunta el desglose de los temas impartidos.
+
+Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'justify', indent: 10 });
+}
+
 
 
 // Finalizar el PDF

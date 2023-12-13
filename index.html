@@ -92,9 +92,16 @@
   <div class="margin-button">
     <div class="flex-container" style="justify-content: center;">
       <div class="flex-item">
-      <button onclick="selectDirectoryAndGeneratePDFs()" style="margin-left: 20px; margin-right: 20px;">Generar y enviar certificado de inscripción</button>
+      <button onclick="selectDirectoryAndGeneratePDFs('inscripción')" style="margin-left: 20px; margin-right: 20px;">de inscripción</button>
       </div>
  </div>
+
+ <div class="margin-button">
+  <div class="flex-container" style="justify-content: center;">
+    <div class="flex-item">
+    <button onclick="selectDirectoryAndGeneratePDFs('realizado')" style="margin-left: 20px; margin-right: 20px;">de realización </button>
+    </div>
+</div>
 
   <script>
    
@@ -154,9 +161,9 @@ function loadData() {
 
 
     // Nueva función para seleccionar directorio y generar los PDFs
-    function selectDirectoryAndGeneratePDFs() {
+    function selectDirectoryAndGeneratePDFs(certType) {
       // Envía el evento para seleccionar el directorio antes de generar los PDFs
-      window.ipcRenderer.send('select-directory')
+      window.ipcRenderer.send('select-directory', certType)
     }
 
  
