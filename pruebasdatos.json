@@ -7,24 +7,6 @@
         "FECHA_INICIO":"17 de octubre de 2022",
         "FECHA_FIN":"31 de octubre de 2023",
         "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-        },
-        { 
-            "ALUMNO":"GIMENA MOTTO2",
-            "DNI":"509XX00D",
-            "CURSO":"ARQUITECTO AYUNTAMIENTO DE MADRID 2022-2023",
-            "DIRIGIDO_A":"Arquitectos superiores",
-            "FECHA_INICIO":"17 de octubre de 2022",
-            "FECHA_FIN":"31 de octubre de 2023",
-            "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-            },
-            { 
-                "ALUMNO":"GIMENA MOTTO3",
-                "DNI":"509XX00D",
-                "CURSO":"ARQUITECTO AYUNTAMIENTO DE MADRID 2022-2023",
-                "DIRIGIDO_A":"Arquitectos superiores",
-                "FECHA_INICIO":"17 de octubre de 2022",
-                "FECHA_FIN":"31 de octubre de 2023",
-                "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-                }
+        }
   
 ]

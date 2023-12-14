@@ -55,9 +55,9 @@ function customDelay(ms) {
     doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
   
     // Parte 1 del texto con el nombre del alumno en negrita
-    doc.font(pathToCalibri).text(`Que Don/Doña `, 100, 300, { continued: true }); 
+    doc.font(pathToCalibri).text(`Que Don/Doña `, 90, 290, { continued: true }); 
     doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
-    doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de `, { continued: true });
+    doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `, { continued: true });
     
     // "Oposiciones Arquitectos" en negrita
     doc.font(pathToCalibriBold).text('Oposiciones Arquitectos', { continued: true });
@@ -67,7 +67,7 @@ function customDelay(ms) {
 
 
 
-Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'justify', indent: 10 });
+Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left' });
 }
 
 
@@ -76,23 +76,42 @@ else if (certType === 'realizado') {
   doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
 
   // Parte 1 del texto con el nombre del alumno en negrita
-  doc.font(pathToCalibri).text(`Que Don/Doña `, 100, 300, { continued: true }); 
+  doc.font(pathToCalibri).text(`Que Don/Doña `, 90, 290, { continued: true }); 
   doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
-  doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de `, { continued: true });
+  doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `, { continued: true });
   
   // "Oposiciones Arquitectos" en negrita
-  doc.font(pathToCalibriBold).text('Oposiciones Arquitectos', { continued: true });
+  doc.font(pathToCalibriBold).text('Oposiciones Arquitectos ', { continued: true });
 
   // Parte 2 del texto
-  doc.font(pathToCalibri).text(`, e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+  doc.font(pathToCalibri).text(`e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
 
 Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
 
 Se adjunta el desglose de los temas impartidos.
 
-Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'justify', indent: 10 });
+Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
 }
 
+
+else if (certType === 'supuestos-prácticos') {
+  // Certificado de curso realizado
+  doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
+
+  // Parte 1 del texto con el nombre del alumno en negrita
+  doc.font(pathToCalibri).text(`Que Don/Doña `, 90, 290, { continued: true }); 
+  doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
+  doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia  `, { continued: true });
+  
+  // "Oposiciones Arquitectos" en negrita
+  doc.font(pathToCalibriBold).text('Oposiciones Arquitectos ', { continued: true });
+
+  // Parte 2 del texto
+  doc.font(pathToCalibri).text(`e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+
+
+Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
+}
 
 
 // Finalizar el PDF
