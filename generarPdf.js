@@ -63,7 +63,7 @@ function customDelay(ms) {
     doc.font(pathToCalibriBold).text('Oposiciones Arquitectos', { continued: true });
   
     // Parte 2 del texto
-    doc.font(pathToCalibri).text(`, este curso se imparte desde el ${student.FECHA_INICIO}, ACÁ VAN DÍAS Y HORARIOS....., y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
+    doc.font(pathToCalibri).text(`, este curso se imparte desde el ${student.FECHA_INICIO}, los días ${student.DIA} de ${student.HORA_INICIO} a ${student.HORA_FIN} h, y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
 
 
 
@@ -85,9 +85,8 @@ else if (certType === 'realizado') {
 
   // Parte 2 del texto
   doc.font(pathToCalibri).text(`e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
-
+  
 Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
-
 Se adjunta el desglose de los temas impartidos.
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});

@@ -3,6 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <title>Oposiciones Arquitectos Madrid Certificados</title>
+ 
+</head>
+<body>
   <style>
     /* Estilos para simular la consola */
     .console {
@@ -12,7 +15,7 @@
       padding: 10px;
       border: 1px solid #CCCCCC;
       width: 80%;
-      height: 200px;
+      height: 300px; /* Aumenta la altura de la consola */
       overflow-y: auto;
       margin-top: 20px; /* Agrega espacio arriba de la consola */
     }
@@ -30,12 +33,12 @@
     }
 
     input[type="number"],
-    input[type="file"],
-    button {
-      margin-top: 5px; /* Agrega espacio arriba de los input y el botón */
+    input[type="file"] {
+      margin-top: 5px; /* Agrega espacio arriba de los input */
     }
 
     button {
+      margin-top: 20px; /* Agrega espacio arriba del botón */
       padding: 12px 27px; /* Aumenta el tamaño del botón */
       font-size: 16px;
     }
@@ -44,6 +47,7 @@
     .flex-container {
       display: flex;
       align-items: center;
+      justify-content: space-between; /* Ajusta el espacio entre elementos */
     }
 
     .flex-item {
@@ -52,64 +56,66 @@
 
     .margin-button {
       margin-top: 30px;
-  
-    
+      text-align: center; /* Centra los botones */
+    }
+
+    /* Nuevos estilos para los botones */
+    .button-container {
+      display: flex;
+      flex-direction: column; /* Cambia la dirección del contenedor a columna */
+      align-items: center; /* Centra los elementos horizontalmente */
+    }
+
+    /* Estilos específicos para el botón "Cargar datos" */
+    .loadDataButton {
+      margin-top: 10px; /* Ajusta el espacio arriba del botón */
     }
   </style>
 </head>
 <body>
   <div id="container">
     <h2>Datos alumnos/as y Certificados</h2>
-  
 
+    <div class="flex-container">
       <div class="flex-item">
-      <label for="dateInput" style="margin-top: 20px; font-size: 18px;">Fecha:</label>
-      <input type="date" id="dateInput" style="margin-top: 10px; padding: 7px;">
+        <label for="dateInput" style="margin-top: 20px; font-size: 18px;">Fecha:</label>
+        <input type="date" id="dateInput" style="margin-top: 10px; padding: 7px;">
       </div>
 
       <div class="flex-item">
         <label for="userInput" style="margin-top: 20px; font-size: 18px;">Total horas lectivas:</label>
-        <input type="text" id="userInput" style="margin-top: 10px; padding: 7px;">
+        <input type="text" id="userInput" style="margin-top: 5px; padding: 7px; width: 100px;"> <!-- Reduje el espacio arriba y ajusté el ancho -->
       </div>
-
 
       <div class="flex-item">
         <label for="jsonFileInput" style="margin-top: 20px; font-size: 18px;">Seleccione un archivo JSON:</label>
         <input type="file" id="jsonFileInput" style="margin-top: 10px; padding: 10px;">
       </div>
+    </div>
 
+    <div class="button-container">
+      <div class="loadDataButton">
+        <button onclick="loadData()">Cargar datos</button>
       </div>
-      <div class="flex-item" style="text-align: left;">
-        <button onclick="loadData()" style="margin-right: 40px; margin-top: 20px;">Cargar datos</button>
-      </div>
-   
+    </div>
 
     <!-- Elemento para simular la consola -->
     <div id="console" class="console"></div>
-
   </div>
 
-  <div class="margin-button">
-    <div class="flex-container" style="justify-content: center;">
+  <div class="margin-button button-container">
+    <div class="flex-container">
       <div class="flex-item">
-      <button onclick="selectDirectoryAndGeneratePDFs('inscripción')" style="margin-left: 20px; margin-right: 20px;">de inscripción</button>
+        <button onclick="selectDirectoryAndGeneratePDFs('inscripción')" style="margin-left: 20px; margin-right: 20px;">de inscripción</button>
       </div>
- </div>
-
- <div class="margin-button">
-  <div class="flex-container" style="justify-content: center;">
-    <div class="flex-item">
-    <button onclick="selectDirectoryAndGeneratePDFs('realizado')" style="margin-left: 20px; margin-right: 20px;">de realización</button>
+      <div class="flex-item">
+        <button onclick="selectDirectoryAndGeneratePDFs('realizado')" style="margin-left: 20px; margin-right: 20px;">de realización</button>
+      </div>
+      <div class="flex-item">
+        <button onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')" style="margin-left: 20px; margin-right: 20px;">de supuestos prácticos</button>
+      </div>
     </div>
-</div>
-
-<div class="margin-button">
-  <div class="flex-container" style="justify-content: center;">
-    <div class="flex-item">
-    <button onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')" style="margin-left: 20px; margin-right: 20px;">de supuestos prácticos</button>
-    </div>
-</div>
-
+  </div>
   <script>
    
     let dateInputGlobal = ''; // Variable global para almacenar la fecha
