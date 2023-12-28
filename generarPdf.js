@@ -8,12 +8,15 @@ const pathToCalibriItalic = './Calibri Italic.ttf'
 const nodemailer = require('nodemailer')
 require('dotenv').config()
 
+
+
+
 // Función para implementar el retraso
 function customDelay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
   
-  async function generarPDF(students, selectedDirectory, dateInput, userInput, certType) {
+  async function generarPDF(students, selectedDirectory, dateInput, userInput, certType, pdfContent) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
@@ -90,6 +93,18 @@ Durante el curso se han impartido los temarios publicados en las correspondiente
 Se adjunta el desglose de los temas impartidos.
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
+
+// Cargar el PDF adicional directamente desde base64
+const attachmentPdfBytes = Buffer.from(pdfContent, 'base64');
+const attachmentPdf = new PDFDocument();
+attachmentPdf.pipe(doc);
+
+// Espera a que el PDF adicional se haya creado antes de continuar
+await new Promise(resolve => {
+    attachmentPdf.end(attachmentPdfBytes);
+    attachmentPdf.on('end', resolve);
+});
+
 }
 
 

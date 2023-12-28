@@ -1,10 +1,12 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <meta charset="UTF-8">
   <title>Oposiciones Arquitectos Madrid Certificados</title>
- 
+
 </head>
+
 <body>
   <style>
     /* Estilos para simular la consola */
@@ -15,9 +17,11 @@
       padding: 10px;
       border: 1px solid #CCCCCC;
       width: 80%;
-      height: 300px; /* Aumenta la altura de la consola */
+      height: 300px;
+      /* Aumenta la altura de la consola */
       overflow-y: auto;
-      margin-top: 20px; /* Agrega espacio arriba de la consola */
+      margin-top: 20px;
+      /* Agrega espacio arriba de la consola */
     }
 
     /* Estilos para el contenedor principal */
@@ -29,17 +33,21 @@
 
     /* Estilos para los elementos del formulario */
     label {
-      margin-top: 10px; /* Agrega espacio arriba de cada label */
+      margin-top: 10px;
+      /* Agrega espacio arriba de cada label */
     }
 
     input[type="number"],
     input[type="file"] {
-      margin-top: 5px; /* Agrega espacio arriba de los input */
+      margin-top: 5px;
+      /* Agrega espacio arriba de los input */
     }
 
     button {
-      margin-top: 20px; /* Agrega espacio arriba del botón */
-      padding: 12px 27px; /* Aumenta el tamaño del botón */
+      margin-top: 20px;
+      /* Agrega espacio arriba del botón */
+      padding: 12px 27px;
+      /* Aumenta el tamaño del botón */
       font-size: 16px;
     }
 
@@ -47,32 +55,37 @@
     .flex-container {
       display: flex;
       align-items: center;
-      justify-content: space-between; /* Ajusta el espacio entre elementos */
+      justify-content: space-between;
+      /* Ajusta el espacio entre elementos */
     }
 
     .flex-item {
-      margin-right: 10px; /* Agrega espacio entre elementos */
+      margin-right: 10px;
+      /* Agrega espacio entre elementos */
     }
 
     .margin-button {
       margin-top: 30px;
-      text-align: center; /* Centra los botones */
+      text-align: center;
+      /* Centra los botones */
     }
 
     /* Nuevos estilos para los botones */
     .button-container {
       display: flex;
-      flex-direction: column; /* Cambia la dirección del contenedor a columna */
-      align-items: center; /* Centra los elementos horizontalmente */
+      flex-direction: column;
+      /* Cambia la dirección del contenedor a columna */
+      align-items: center;
+      /* Centra los elementos horizontalmente */
     }
 
     /* Estilos específicos para el botón "Cargar datos" */
     .loadDataButton {
-      margin-top: 10px; /* Ajusta el espacio arriba del botón */
+      margin-top: 10px;
+      /* Ajusta el espacio arriba del botón */
     }
   </style>
-</head>
-<body>
+
   <div id="container">
     <h2>Datos alumnos/as y Certificados</h2>
 
@@ -84,7 +97,8 @@
 
       <div class="flex-item">
         <label for="userInput" style="margin-top: 20px; font-size: 18px;">Total horas lectivas:</label>
-        <input type="text" id="userInput" style="margin-top: 5px; padding: 7px; width: 100px;"> <!-- Reduje el espacio arriba y ajusté el ancho -->
+        <input type="text" id="userInput" style="margin-top: 5px; padding: 7px; width: 100px;">
+        <!-- Reduje el espacio arriba y ajusté el ancho -->
       </div>
 
       <div class="flex-item">
@@ -93,15 +107,21 @@
       </div>
     </div>
 
-    <div class="button-container">
-      <div class="loadDataButton">
-        <button onclick="loadData()">Cargar datos</button>
-      </div>
-    </div>
+    <div class="flex-item">
+      <label for="userPdfInput" style="margin-top: 20px; font-size: 18px;">Seleccione el temario en PDF:</label>
+      <input type="file" id="userPdfInput" style="margin-top: 10px; padding: 10px;">
 
-    <!-- Elemento para simular la consola -->
-    <div id="console" class="console"></div>
+    </div>
   </div>
+
+  <div class="button-container">
+    <div class="loadDataButton">
+      <button onclick="loadData()">Cargar datos</button>
+    </div>
+  </div>
+
+  <!-- Elemento para simular la consola -->
+  <div id="console" class="console"></div>
 
   <div class="margin-button button-container">
     <div class="flex-container">
@@ -117,69 +137,73 @@
     </div>
   </div>
   <script>
-   
     let dateInputGlobal = ''; // Variable global para almacenar la fecha
-    let userInputGlobal = ''
+    let userInputGlobal = '';
 
+    function loadData() {
+      const fileInput = document.getElementById('jsonFileInput');
+      const pdfInput = document.getElementById('userPdfInput');
+      const file = fileInput.files[0];
+      const pdfFile = pdfInput.files[0];
 
-  // Modifica la función loadData() para obtener la fecha del campo de entrada en index.html
-function loadData() {
-  const fileInput = document.getElementById('jsonFileInput');
-  const file = fileInput.files[0];
- 
+      const dateInput = document.getElementById('dateInput').valueAsDate;
+      const userInput = document.getElementById('userInput').value;
 
-  const dateInput = document.getElementById('dateInput').valueAsDate; // Obtiene la fecha del campo de entrada como un objeto Date
-  const userInput = document.getElementById('userInput').value;
+      if (file && pdfFile && dateInput !== '') {
+        const formattedDate = dateInput.toLocaleDateString('es-ES', {
+          day: 'numeric',
+          month: 'long',
+          year: 'numeric'
+        });
+        const reader = new FileReader();
 
-  if (file && dateInput !== '') {
-    
-     const formattedDate = dateInput.toLocaleDateString('es-ES', { day: 'numeric', month: 'long', year: 'numeric' });
-    const reader = new FileReader();
+        // Lectura del PDF del usuario
+        const pdfReader = new FileReader();
+        pdfReader.onload = function (event) {
+          const pdfContent = event.target.result;
+          console.log('Contenido del PDF del usuario:', pdfContent);
 
-    reader.onload = function(event) {
-      const jsonContent = event.target.result;
-     
-      const data = {
-        jsonContent: jsonContent,
-        userInput: userInput,
-        dateInput: formattedDate, // Usa la fecha formateada
-    
-      };
+          // Ahora debes leer el contenido del archivo JSON
+          reader.onload = function (event) {
+            const jsonContent = event.target.result;
+            console.log('Contenido del JSON:', jsonContent);
 
-      dateInputGlobal = formattedDate; // Actualiza la fecha global
-      userInputGlobal = userInput
- 
+            const data = {
+              jsonContent: jsonContent,
+              userInput: userInput,
+              dateInput: formattedDate,
+              pdfContent: pdfContent
+            };
 
-    
-      // Después de definir dateInputGlobal
-     window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
-     console.log('Valor de userInput en loadData:', userInput);
-     window.ipcRenderer.send('set-user-input-global', userInputGlobal);
+            dateInputGlobal = formattedDate;
+            userInputGlobal = userInput;
 
-      // Envía el contenido JSON, el número de factura y la fecha al proceso principal (main.js)
-      window.ipcRenderer.send('load-data', data);
+            window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
+            window.ipcRenderer.send('set-user-input-global', userInputGlobal);
 
-      // Mostrar el resultado en la consola personalizada
-      const consoleElement = document.getElementById('console');
-      const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}`;
-      consoleElement.innerText = message;
-    };
-  
+            window.ipcRenderer.send('load-data', data);
 
-    reader.readAsText(file);
-  } else {
-    console.error('Error: Por favor, seleccione un archivo JSON, y seleccione una fecha.');
-  }
-}
+            const consoleElement = document.getElementById('console');
+            const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}\nContenido del PDF: ${pdfContent}`;
+            consoleElement.innerText = message;
+          };
 
+          // Inicia la lectura del archivo JSON
+          reader.readAsText(file);
+        };
 
-    // Nueva función para seleccionar directorio y generar los PDFs
-    function selectDirectoryAndGeneratePDFs(certType) {
-      // Envía el evento para seleccionar el directorio antes de generar los PDFs
-      window.ipcRenderer.send('select-directory', certType)
+        // Inicia la lectura del PDF del usuario
+        pdfReader.readAsDataURL(pdfFile);
+      } else {
+        console.error('Error: Por favor, seleccione un archivo JSON, un PDF y una fecha.');
+      }
     }
 
- 
+    function selectDirectoryAndGeneratePDFs(certType) {
+      window.ipcRenderer.send('select-directory', certType);
+    }
   </script>
+
 </body>
+
 </html>

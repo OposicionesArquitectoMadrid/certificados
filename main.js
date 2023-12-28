@@ -12,6 +12,8 @@ let selectedDirectoryForEmails = null; // Variable para almacenar el directorio 
 let dateInputGlobal = ''; // Variable global para almacenar la fecha
 let userInputGlobal = ''; // Variable global para almacenar userInput
 
+let pdfContentGlobal = '';  // Nueva variable global para almacenar pdfContent
+
 function createWindow() {
 
 
@@ -57,16 +59,13 @@ app.on('activate', () => {
 
 // para recibir el contenido JSON y el número de factura
 ipcMain.on('load-data', (event, data) => {
-  const { jsonContent, dateInput, userInput} = data;
+  const { jsonContent, dateInput, userInput, pdfContent} = data;
 
   try {
     students = JSON.parse(jsonContent)
-    // const tipoDeFechaInicio = typeof students[0].FECHA_INiCIO;
-    // console.log('Tipo de dato de FECHA_INiCIO:', tipoDeFechaInicio);
-    // const tipoDeFechaFin = typeof students[0].FECHA_FIN;
-    // console.log('Tipo de dato de FECHA_INiCIO:', tipoDeFechaFin);
-    
-    // Almacena el número 
+  
+    pdfContentGlobal = pdfContent;  // Guarda pdfContent en la variable global
+
 
     console.log('Fecha:', dateInput); // Muestra la fecha en la consola
     console.log('dirigido a arquitectos:', userInput)
@@ -100,7 +99,7 @@ ipcMain.on('select-directory', (event, certType) => {
       const selectedDirectory = result.filePaths[0]
       if (students.length > 0) {
         console.log('Valor de userInput antes de llamar a generarPDF:', userInputGlobal);
-        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType) // Llamamos a la función para generar los PDFs
+        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType, pdfContentGlobal) // Llamamos a la función para generar los PDFs
       } else {
         console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')
       }
