@@ -45,7 +45,9 @@ function customDelay(ms) {
     const outputFileName = `${student.ALUMNO}_certificado.pdf`
     const outputPath = path.join(selectedDirectory, outputFileName) // se guarda donde selecciona el usuario 
     
- 
+    if (pdfContent) {
+      additionalPdfBuffer = Buffer.from(pdfContent.split(',')[1], 'base64');
+    }
 
 //formatear fecha
         const formattedDate = dateInput
@@ -75,6 +77,8 @@ function customDelay(ms) {
 
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left' });
+// Finalizar el PDF
+doc.end();
 }
 
 
@@ -97,7 +101,9 @@ Durante el curso se han impartido los temarios publicados en las correspondiente
 Se adjunta el desglose de los temas impartidos.
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
-
+ 
+// Finalizar el PDF
+doc.end();
 
 }
 
@@ -119,11 +125,12 @@ else if (certType === 'supuestos-prácticos') {
 
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
+// Finalizar el PDF
+doc.end();
 }
 
  
-// Finalizar el PDF
-doc.end();
+
 
 
 // Enviar correo 
@@ -148,7 +155,7 @@ doc.end();
             path: path.join(selectedDirectory, invoice),
           },
           {
-            filename: 'user_uploaded.pdf',
+            filename: 'temario.pdf',
             content: Buffer.from(pdfContent.split(',')[1], 'base64'), // Data URL convertido a buffer directamente
           },
         ],
