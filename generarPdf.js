@@ -137,20 +137,23 @@ doc.end();
 
 
     
-    const mailOptions = {
-      from: 'Facturacion Oposiciones Arquitectos <facturacion@oposicionesarquitectos.com>',
-      to: recipient,
-      subject: subject,
-      text: body,
-      attachments: [
-        {
-          filename: invoice,
-          path: path.join(selectedDirectory, invoice),
-        },
-       
-     
-      ],
-    };
+      const mailOptions = {
+        from: 'Facturacion Oposiciones Arquitectos <facturacion@oposicionesarquitectos.com>',
+        to: recipient,
+        subject: subject,
+        text: body,
+        attachments: [
+          {
+            filename: invoice,
+            path: path.join(selectedDirectory, invoice),
+          },
+          {
+            filename: 'user_uploaded.pdf',
+            content: Buffer.from(pdfContent.split(',')[1], 'base64'), // Data URL convertido a buffer directamente
+          },
+        ],
+      };
+      
 
     try {
       await transporter.sendMail(mailOptions);
