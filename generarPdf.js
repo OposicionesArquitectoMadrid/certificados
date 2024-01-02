@@ -1,12 +1,14 @@
-const PDFDocument = require('pdfkit')
-const fs = require('fs')
-const path = require('path')
-const { format } = require('date-fns')
+const PDFDocument = require('pdfkit');
+const fs = require('fs');
+const path = require('path');
+const { format } = require('date-fns');
+
+const nodemailer = require('nodemailer');
+require('dotenv').config();
 const pathToCalibri = './Calibri Regular.ttf'
 const pathToCalibriBold = './Calibri Bold.ttf'
 const pathToCalibriItalic = './Calibri Italic.ttf'
-const nodemailer = require('nodemailer')
-require('dotenv').config()
+
 
 
 
@@ -16,7 +18,6 @@ function customDelay(ms) {
   }
 
 
-  
   async function generarPDF(students, selectedDirectory, dateInput, userInput, certType, pdfContent) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
@@ -28,7 +29,7 @@ function customDelay(ms) {
             rejectUnauthorized: false,
         },
       });
-      
+   
 
     const { es } = require('date-fns/locale');
 
@@ -44,6 +45,8 @@ function customDelay(ms) {
     const outputFileName = `${student.ALUMNO}_certificado.pdf`
     const outputPath = path.join(selectedDirectory, outputFileName) // se guarda donde selecciona el usuario 
     
+ 
+
 //formatear fecha
         const formattedDate = dateInput
    
@@ -123,7 +126,7 @@ Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'le
 doc.end();
 
 
-// Enviar correo si ENVIAR es "SI"
+// Enviar correo 
 
     const invoice = `${student.ALUMNO}_certificado.pdf`;
     const recipient = student.EMAIL;
@@ -144,6 +147,8 @@ doc.end();
           filename: invoice,
           path: path.join(selectedDirectory, invoice),
         },
+       
+     
       ],
     };
 
