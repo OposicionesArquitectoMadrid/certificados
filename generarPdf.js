@@ -8,14 +8,14 @@ const pathToCalibriItalic = './Calibri Italic.ttf'
 const nodemailer = require('nodemailer')
 require('dotenv').config()
 
-const pdfPoppler = require('pdf-poppler');
-
 
 
 // Función para implementar el retraso
 function customDelay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
+
+
   
   async function generarPDF(students, selectedDirectory, dateInput, userInput, certType, pdfContent) {
     const transporter = nodemailer.createTransport({
@@ -96,8 +96,6 @@ Se adjunta el desglose de los temas impartidos.
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
 
 
-
-
 }
 
 
@@ -120,7 +118,7 @@ else if (certType === 'supuestos-prácticos') {
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
 }
 
-
+ 
 // Finalizar el PDF
 doc.end();
 
