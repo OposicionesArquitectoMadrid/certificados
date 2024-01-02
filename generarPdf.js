@@ -45,9 +45,7 @@ function customDelay(ms) {
     const outputFileName = `${student.ALUMNO}_certificado.pdf`
     const outputPath = path.join(selectedDirectory, outputFileName) // se guarda donde selecciona el usuario 
     
-    if (pdfContent) {
-      additionalPdfBuffer = Buffer.from(pdfContent.split(',')[1], 'base64');
-    }
+
 
 //formatear fecha
         const formattedDate = dateInput
@@ -102,6 +100,7 @@ Se adjunta el desglose de los temas impartidos.
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
  
+
 // Finalizar el PDF
 doc.end();
 
@@ -131,8 +130,6 @@ doc.end();
 
  
 
-
-
 // Enviar correo 
 
     const invoice = `${student.ALUMNO}_certificado.pdf`;
@@ -154,12 +151,16 @@ doc.end();
             filename: invoice,
             path: path.join(selectedDirectory, invoice),
           },
-          {
-            filename: 'temario.pdf',
-            content: Buffer.from(pdfContent.split(',')[1], 'base64'), // Data URL convertido a buffer directamente
-          },
         ],
       };
+      
+      // Si hay contenido adicional, agregarlo como adjunto
+      if (pdfContent) {
+        mailOptions.attachments.push({
+          filename: 'temario.pdf',
+          content: Buffer.from(pdfContent.split(',')[1], 'base64'),
+        });
+      }
       
 
     try {
