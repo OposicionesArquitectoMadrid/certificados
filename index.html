@@ -139,71 +139,97 @@
   <script>
     let dateInputGlobal = ''; // Variable global para almacenar la fecha
     let userInputGlobal = '';
-
+  
     function loadData() {
       const fileInput = document.getElementById('jsonFileInput');
       const pdfInput = document.getElementById('userPdfInput');
       const file = fileInput.files[0];
       const pdfFile = pdfInput.files[0];
-
+  
       const dateInput = document.getElementById('dateInput').valueAsDate;
       const userInput = document.getElementById('userInput').value;
-
-      if (file && pdfFile && dateInput !== '') {
-        const formattedDate = dateInput.toLocaleDateString('es-ES', {
-          day: 'numeric',
-          month: 'long',
-          year: 'numeric'
-        });
-        const reader = new FileReader();
-
-        // Lectura del PDF del usuario
+  
+      const formattedDate = dateInput.toLocaleDateString('es-ES', {
+        day: 'numeric',
+        month: 'long',
+        year: 'numeric'
+      });
+  
+      const reader = new FileReader();
+  
+      // Verifica si se ha seleccionado un archivo PDF adicional
+      if (pdfFile) {
         const pdfReader = new FileReader();
         pdfReader.onload = function (event) {
           const pdfContent = event.target.result;
           console.log('Contenido del PDF del usuario:', pdfContent);
-
+  
           // Ahora debes leer el contenido del archivo JSON
           reader.onload = function (event) {
             const jsonContent = event.target.result;
             console.log('Contenido del JSON:', jsonContent);
-
+  
             const data = {
               jsonContent: jsonContent,
               userInput: userInput,
               dateInput: formattedDate,
               pdfContent: pdfContent
             };
-
+  
             dateInputGlobal = formattedDate;
             userInputGlobal = userInput;
-
+  
             window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
             window.ipcRenderer.send('set-user-input-global', userInputGlobal);
-
+  
             window.ipcRenderer.send('load-data', data);
-
+  
             const consoleElement = document.getElementById('console');
             const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}\nContenido del PDF: ${pdfContent}`;
             consoleElement.innerText = message;
           };
-
+  
           // Inicia la lectura del archivo JSON
           reader.readAsText(file);
         };
-
+  
         // Inicia la lectura del PDF del usuario
         pdfReader.readAsDataURL(pdfFile);
       } else {
-        console.error('Error: Por favor, seleccione un archivo JSON, un PDF y una fecha.');
+        // Si no se selecciona un archivo PDF, solo lee el contenido del archivo JSON
+        reader.onload = function (event) {
+          const jsonContent = event.target.result;
+          console.log('Contenido del JSON:', jsonContent);
+  
+          const data = {
+            jsonContent: jsonContent,
+            userInput: userInput,
+            dateInput: formattedDate,
+            pdfContent: '' // Sin contenido de PDF
+          };
+  
+          dateInputGlobal = formattedDate;
+          userInputGlobal = userInput;
+  
+          window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
+          window.ipcRenderer.send('set-user-input-global', userInputGlobal);
+  
+          window.ipcRenderer.send('load-data', data);
+  
+          const consoleElement = document.getElementById('console');
+          const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}\nContenido del PDF: (No se cargó un PDF)`;
+          consoleElement.innerText = message;
+        };
+  
+        // Inicia la lectura del archivo JSON
+        reader.readAsText(file);
       }
     }
-
+  
     function selectDirectoryAndGeneratePDFs(certType) {
       window.ipcRenderer.send('select-directory', certType);
     }
   </script>
-
 </body>
 
 </html>

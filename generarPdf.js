@@ -8,6 +8,7 @@ const pathToCalibriItalic = './Calibri Italic.ttf'
 const nodemailer = require('nodemailer')
 require('dotenv').config()
 
+const pdfPoppler = require('pdf-poppler');
 
 
 
@@ -94,16 +95,8 @@ Se adjunta el desglose de los temas impartidos.
 
 Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
 
-// Cargar el PDF adicional directamente desde base64
-const attachmentPdfBytes = Buffer.from(pdfContent, 'base64');
-const attachmentPdf = new PDFDocument();
-attachmentPdf.pipe(doc);
 
-// Espera a que el PDF adicional se haya creado antes de continuar
-await new Promise(resolve => {
-    attachmentPdf.end(attachmentPdfBytes);
-    attachmentPdf.on('end', resolve);
-});
+
 
 }
 
