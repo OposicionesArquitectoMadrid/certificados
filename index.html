@@ -119,6 +119,9 @@
     <div class="loadDataButton">
       <button onclick="loadData()">Cargar datos</button>
     </div>
+    <!-- Añade botones para limpiar o quitar datos -->
+<button onclick="clearData()">Limpiar Datos</button>
+
   </div>
 
   <!-- Elemento para simular la consola -->
@@ -238,6 +241,29 @@
     function selectDirectoryAndGeneratePDFs(certType) {
       window.ipcRenderer.send('select-directory', certType);
     }
+  // Nueva función para limpiar datos en el lado del renderizado
+  function clearData() {
+    dateInputGlobal = '';
+    userInputGlobal = '';
+    // Limpia el array de estudiantes
+    students = [];
+    
+    // Limpia el contenido del PDF adicional
+    pdfContentGlobal = '';
+    
+    // Limpia la consola
+    const consoleElement = document.getElementById('console');
+    consoleElement.innerText = 'Datos limpiados.';
+    
+        // Restablece los valores de los elementos de entrada de archivo
+        const fileInput = document.getElementById('jsonFileInput');
+    const pdfInput = document.getElementById('userPdfInput');
+    fileInput.value = ''; // Limpiar el valor del input de JSON
+    pdfInput.value = ''; // Limpiar el valor del input de PDF adicional
+    
+    // También envía una señal al proceso principal (main.js) para limpiar datos
+    window.ipcRenderer.send('clear-data');
+  }
   </script>
 </body>
 

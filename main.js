@@ -108,3 +108,17 @@ ipcMain.on('select-directory', (event, certType) => {
     console.error('Error al mostrar el diálogo de selección de directorio:', err)
   })
 })
+
+// Para limpiar datos globales
+ipcMain.on('clear-data', () => {
+  clearData();
+});
+
+// Nueva función para limpiar datos
+function clearData() {
+  // Limpia datos en el lado del proceso principal
+  dateInputGlobal = '';
+  userInputGlobal = '';
+  students = []; // Limpia el array de estudiantes
+  pdfContentGlobal = ''; // Limpia el contenido del PDF adicional
+}
