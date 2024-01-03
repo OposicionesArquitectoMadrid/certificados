@@ -68,7 +68,7 @@ ipcMain.on('load-data', (event, data) => {
 
 
     console.log('Fecha:', dateInput); // Muestra la fecha en la consola
-    console.log('dirigido a arquitectos:', userInput)
+    console.log('Horas lectivas:', userInput)
 
     console.log('Datos del JSON:', students) //muestra los datos en la consola
   } catch (error) {
@@ -86,7 +86,7 @@ ipcMain.on('set-date-input-global', (event, dateInput) => {
 // para recibir el userInput desde el proceso de renderizado
 ipcMain.on('set-user-input-global', (event, userInput) => {
   userInputGlobal = userInput;
-  console.log('Valor de userInput después de set-user-input-global:', userInput);
+  console.log('Horas lectivas:', userInput);
 });
 
 // mostrar el diálogo de selección de directorio al recibir el evento 'select-directory'
@@ -98,7 +98,7 @@ ipcMain.on('select-directory', (event, certType) => {
     if (!result.canceled && result.filePaths.length > 0) {
       const selectedDirectory = result.filePaths[0]
       if (students.length > 0) {
-        console.log('Valor de userInput antes de llamar a generarPDF:', userInputGlobal);
+        console.log('Horas lectivas:', userInputGlobal);
         generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType, pdfContentGlobal) // Llamamos a la función para generar los PDFs
       } else {
         console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')

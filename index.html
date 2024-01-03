@@ -169,7 +169,7 @@
         const pdfReader = new FileReader();
         pdfReader.onload = function (event) {
           const pdfContent = event.target.result;
-          console.log('Contenido del PDF del usuario:', pdfContent);
+          console.log('Contenido del PDF adicional cargado');
   
           // Ahora debes leer el contenido del archivo JSON
           reader.onload = function (event) {
@@ -192,10 +192,11 @@
             window.ipcRenderer.send('load-data', data);
   
             const consoleElement = document.getElementById('console');
-            const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}\nContenido del PDF: ${pdfContent}`;
+            const message = `Fecha: ${formattedDate}\nHoras Lectivas: ${userInput}\nDatos del JSON: ${jsonContent}\nContenido del PDF cargado (TEMARIO)`;
+
             consoleElement.innerText = message;
           };
-  
+         
           // Inicia la lectura del archivo JSON
           reader.readAsText(file);
         };
@@ -224,7 +225,8 @@
           window.ipcRenderer.send('load-data', data);
   
           const consoleElement = document.getElementById('console');
-          const message = `Fecha: ${formattedDate}\nDatos del JSON: ${jsonContent}\nContenido del PDF: (No se cargó un PDF)`;
+          const message = `Fecha: ${formattedDate}\nHoras Lectivas: ${userInput}\nDatos del JSON: ${jsonContent}\nNo se cargó un PDF ADICIONAL`;
+
           consoleElement.innerText = message;
         };
   
