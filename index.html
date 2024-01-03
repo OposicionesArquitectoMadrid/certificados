@@ -11,18 +11,19 @@
   <style>
     /* Estilos para simular la consola */
     .console {
-      background-color: #1E1E1E;
-      color: #FFFFFF;
-      font-family: monospace;
-      padding: 10px;
-      border: 1px solid #CCCCCC;
-      width: 80%;
-      height: 300px;
-      /* Aumenta la altura de la consola */
-      overflow-y: auto;
-      margin-top: 20px;
-      /* Agrega espacio arriba de la consola */
-    }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1E1E1E;
+  color: #FFFFFF;
+  font-family: monospace;
+  padding: 10px;
+  border: 1px solid #CCCCCC;
+  width: 60%; /* Ajusta el ancho según tus necesidades */
+  height: 300px;
+  overflow-y: auto;
+  margin: 20px auto; /* Agrega un margen automático en la parte superior e inferior y centrado horizontalmente */
+}
 
     /* Estilos para el contenedor principal */
     #container {
@@ -133,6 +134,12 @@
       </div>
       <div class="flex-item">
         <button onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')" style="margin-left: 20px; margin-right: 20px;">de supuestos prácticos</button>
+      </div>
+      <div class="flex-item">
+        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-CM')" style="margin-left: 20px; margin-right: 20px;">de teoría/práctico CM</button>
+      </div>
+      <div class="flex-item">
+        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-AYTO')" style="margin-left: 20px; margin-right: 20px;">de teoría/práctico AYTO</button>
       </div>
     </div>
   </div>

@@ -108,7 +108,7 @@ doc.end();
 
 
 else if (certType === 'supuestos-prácticos') {
-  // Certificado de curso realizado
+  // Certificado de curso realizado SUPUESTOS PRÁCTICOS
   doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
 
   // Parte 1 del texto con el nombre del alumno en negrita
@@ -128,7 +128,55 @@ Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'le
 doc.end();
 }
 
+else if (certType === 'teoría-práctico-CM') {
+  // Certificado de curso TEORICO PRÁCTICO CM
+  doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
+
+  // Parte 1 del texto con el nombre del alumno en negrita
+  doc.font(pathToCalibri).text(`Que Don/Doña `, 90, 290, { continued: true }); 
+  doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
+  doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `, { continued: true });
+  
+  // "Oposiciones Arquitectos" en negrita
+  doc.font(pathToCalibriBold).text('Oposiciones Arquitectos ', { continued: true });
+
+  // Parte 2 del texto
+  doc.font(pathToCalibri).text(`e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+  
+Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
+Se adjunta el desglose de los temas impartidos.
+
+Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
  
+
+// Finalizar el PDF
+doc.end();
+}
+
+else if (certType === 'teoría-práctico-AYTO') {
+   // Certificado de curso TEORICO PRÁCTICO AYTO
+   doc.font(pathToCalibri).fillColor('black').fontSize(10).lineGap(11);
+
+   // Parte 1 del texto con el nombre del alumno en negrita
+   doc.font(pathToCalibri).text(`Que Don/Doña `, 90, 290, { continued: true }); 
+   doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
+   doc.font(pathToCalibri).text(` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `, { continued: true });
+   
+   // "Oposiciones Arquitectos" en negrita
+   doc.font(pathToCalibriBold).text('Oposiciones Arquitectos ', { continued: true });
+ 
+   // Parte 2 del texto
+   doc.font(pathToCalibri).text(`e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+   
+ Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
+ Se adjunta el desglose de los temas impartidos.
+ 
+ Y para que conste, firma en Madrid a ${formattedDate}`, { width: 400, align: 'left'});
+  
+ 
+ // Finalizar el PDF
+ doc.end();
+}
 
 // Enviar correo 
 
