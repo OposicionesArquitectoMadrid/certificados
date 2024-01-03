@@ -22,7 +22,7 @@ function customDelay(ms) {
     const transporter = nodemailer.createTransport({
         service: 'gmail',
         auth: {
-            user:'factura.oposicionesarquitectos@gmail.com',
+            user:'academia.oposicionesarquitectos@gmail.com',
             pass: process.env.PASSWORD,
         },
         tls: {
@@ -190,7 +190,7 @@ else if (certType === 'teoría-práctico-AYTO') {
 
     
       const mailOptions = {
-        from: 'Facturacion Oposiciones Arquitectos <facturacion@oposicionesarquitectos.com>',
+        from: 'Oposiciones Arquitectos <academia.oposicionesarquitectos@gmail.com>',
         to: recipient,
         subject: subject,
         text: body,
