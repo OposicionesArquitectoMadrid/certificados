@@ -179,16 +179,13 @@ else if (certType === 'teoría-práctico-AYTO') {
 }
 
 // Enviar correo 
-
-    const invoice = `${student.ALUMNO}_certificado.pdf`;
+  const invoice = `${student.ALUMNO}_certificado.pdf`;
     const recipient = student.EMAIL;
     const subject = 'Certificado';
     const body = `Estimado/a ${student.ALUMNO}, adjunto encontrarás tu certificado. Un cordial saludo`
     
       ;
 
-
-    
       const mailOptions = {
         from: 'Oposiciones Arquitectos <academia.oposicionesarquitectos@gmail.com>',
         to: recipient,
@@ -202,7 +199,7 @@ else if (certType === 'teoría-práctico-AYTO') {
         ],
       };
       
-      // Si hay contenido adicional, agregarlo como adjunto
+      // Si hay contenido adicional, agregarlo como adjunto (es el pdf opcional que agrega el usuario, temario...que se adjunta en algunos certificados)
       if (pdfContent) {
         mailOptions.attachments.push({
           filename: 'temario.pdf',

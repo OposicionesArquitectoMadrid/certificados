@@ -9,7 +9,7 @@
 
 <body>
   <style>
-    /* Estilos para simular la consola */
+    /* Estilos para simular la consola gráfica */
     .console {
   display: flex;
   flex-direction: column;
@@ -19,10 +19,10 @@
   font-family: monospace;
   padding: 10px;
   border: 1px solid #CCCCCC;
-  width: 60%; /* Ajusta el ancho según tus necesidades */
+  width: 60%;
   height: 300px;
   overflow-y: auto;
-  margin: 20px auto; /* Agrega un margen automático en la parte superior e inferior y centrado horizontalmente */
+  margin: 20px auto; 
 }
 
     /* Estilos para el contenedor principal */
@@ -35,55 +35,53 @@
     /* Estilos para los elementos del formulario */
     label {
       margin-top: 10px;
-      /* Agrega espacio arriba de cada label */
+     
     }
 
     input[type="number"],
     input[type="file"] {
       margin-top: 5px;
-      /* Agrega espacio arriba de los input */
+    
     }
 
     button {
       margin-top: 20px;
-      /* Agrega espacio arriba del botón */
+   
       padding: 12px 27px;
-      /* Aumenta el tamaño del botón */
+     
       font-size: 16px;
     }
 
-    /* Estilos para colocar elementos uno al lado del otro */
+
     .flex-container {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      /* Ajusta el espacio entre elementos */
+   
     }
 
     .flex-item {
       margin-right: 10px;
-      /* Agrega espacio entre elementos */
+  
     }
 
     .margin-button {
       margin-top: 30px;
       text-align: center;
-      /* Centra los botones */
+     
     }
 
-    /* Nuevos estilos para los botones */
     .button-container {
       display: flex;
       flex-direction: column;
-      /* Cambia la dirección del contenedor a columna */
+     
       align-items: center;
-      /* Centra los elementos horizontalmente */
+     
     }
 
-    /* Estilos específicos para el botón "Cargar datos" */
     .loadDataButton {
       margin-top: 10px;
-      /* Ajusta el espacio arriba del botón */
+      
     }
   </style>
 
@@ -99,7 +97,6 @@
       <div class="flex-item">
         <label for="userInput" style="margin-top: 20px; font-size: 18px;">Total horas lectivas:</label>
         <input type="text" id="userInput" style="margin-top: 5px; padding: 7px; width: 100px;">
-        <!-- Reduje el espacio arriba y ajusté el ancho -->
       </div>
 
       <div class="flex-item">
@@ -111,7 +108,6 @@
     <div class="flex-item">
       <label for="userPdfInput" style="margin-top: 20px; font-size: 18px;">Seleccione el temario en PDF:</label>
       <input type="file" id="userPdfInput" style="margin-top: 10px; padding: 10px;">
-
     </div>
   </div>
 
@@ -119,7 +115,7 @@
     <div class="loadDataButton">
       <button onclick="loadData()">Cargar datos</button>
     </div>
-    <!-- Añade botones para limpiar o quitar datos -->
+ 
 <button onclick="clearData()">Limpiar Datos</button>
 
   </div>
@@ -147,7 +143,7 @@
     </div>
   </div>
   <script>
-    let dateInputGlobal = ''; // Variable global para almacenar la fecha
+    let dateInputGlobal = ''; 
     let userInputGlobal = '';
   
     function loadData() {
@@ -174,7 +170,7 @@
           const pdfContent = event.target.result;
           console.log('Contenido del PDF adicional cargado');
   
-          // Ahora debes leer el contenido del archivo JSON
+         
           reader.onload = function (event) {
             const jsonContent = event.target.result;
             console.log('Contenido del JSON:', jsonContent);
@@ -216,7 +212,7 @@
             jsonContent: jsonContent,
             userInput: userInput,
             dateInput: formattedDate,
-            pdfContent: '' // Sin contenido de PDF
+            pdfContent: '' 
           };
   
           dateInputGlobal = formattedDate;
@@ -233,7 +229,7 @@
           consoleElement.innerText = message;
         };
   
-        // Inicia la lectura del archivo JSON
+       
         reader.readAsText(file);
       }
     }
@@ -241,14 +237,12 @@
     function selectDirectoryAndGeneratePDFs(certType) {
       window.ipcRenderer.send('select-directory', certType);
     }
-  // Nueva función para limpiar datos en el lado del renderizado
+  // función para limpiar datos en el lado del renderizado
   function clearData() {
+    // limpia datos
     dateInputGlobal = '';
     userInputGlobal = '';
-    // Limpia el array de estudiantes
     students = [];
-    
-    // Limpia el contenido del PDF adicional
     pdfContentGlobal = '';
     
     // Limpia la consola

@@ -7,15 +7,12 @@ const nodemailer = require('nodemailer');
 
 let mainWindow
 let students = []
-
 let selectedDirectoryForEmails = null; // Variable para almacenar el directorio seleccionado para los correos
 let dateInputGlobal = ''; // Variable global para almacenar la fecha
 let userInputGlobal = ''; // Variable global para almacenar userInput
-
 let pdfContentGlobal = '';  // Nueva variable global para almacenar pdfContent
 
 function createWindow() {
-
 
 const { width, height } = require('electron').screen.getPrimaryDisplay().workAreaSize;
 
@@ -32,8 +29,7 @@ mainWindow = new BrowserWindow({
   fullscreen: false, // Agrega esta línea para activar el modo de pantalla completa
 })
 
-
-  mainWindow.loadURL(url.format({
+mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
     slashes: true
@@ -58,20 +54,17 @@ app.on('activate', () => {
   }
 })
 
-// para recibir el contenido JSON y el número de factura
+
 ipcMain.on('load-data', (event, data) => {
   const { jsonContent, dateInput, userInput, pdfContent} = data;
 
   try {
     students = JSON.parse(jsonContent)
-  
-    pdfContentGlobal = pdfContent;  // Guarda pdfContent en la variable global
-
-
-    console.log('Fecha:', dateInput); // Muestra la fecha en la consola
+  pdfContentGlobal = pdfContent;  // Guarda pdfContent en la variable global
+    console.log('Fecha:', dateInput); 
     console.log('Horas lectivas:', userInput)
 
-    console.log('Datos del JSON:', students) //muestra los datos en la consola
+    console.log('Datos del JSON:', students) 
   } catch (error) {
     console.error('Error al procesar el JSON:', error)
   }
@@ -84,7 +77,7 @@ ipcMain.on('set-date-input-global', (event, dateInput) => {
  
 });
 
-// para recibir el userInput desde el proceso de renderizado
+// para recibir el userInput desde el proceso de renderizado (horas lectivas)
 ipcMain.on('set-user-input-global', (event, userInput) => {
   userInputGlobal = userInput;
   console.log('Horas lectivas:', userInput);
@@ -96,13 +89,17 @@ ipcMain.on('select-directory', (event, certType) => {
     properties: ['openDirectory'],
     title: 'Seleccione un directorio para guardar los PDFs',
   }).then(result => {
+   
     if (!result.canceled && result.filePaths.length > 0) {
       const selectedDirectory = result.filePaths[0]
+     
       if (students.length > 0) {
         console.log('Horas lectivas:', userInputGlobal);
-        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType, pdfContentGlobal, mainWindow) // Llamamos a la función para generar los PDFs
-      } else {
-        console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')
+       generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType, pdfContentGlobal) // Llamamos a la función para generar los PDFs
+      } 
+      
+      else {
+       console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')
       }
     }
   }).catch(err => {
@@ -120,8 +117,8 @@ function clearData() {
   // Limpia datos en el lado del proceso principal
   dateInputGlobal = '';
   userInputGlobal = '';
-  students = []; // Limpia el array de estudiantes
-  pdfContentGlobal = ''; // Limpia el contenido del PDF adicional
+  students = []; 
+  pdfContentGlobal = ''; 
 }
 
 
