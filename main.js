@@ -32,6 +32,7 @@ mainWindow = new BrowserWindow({
   fullscreen: false, // Agrega esta línea para activar el modo de pantalla completa
 })
 
+
   mainWindow.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
     protocol: 'file:',
@@ -99,7 +100,7 @@ ipcMain.on('select-directory', (event, certType) => {
       const selectedDirectory = result.filePaths[0]
       if (students.length > 0) {
         console.log('Horas lectivas:', userInputGlobal);
-        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType, pdfContentGlobal) // Llamamos a la función para generar los PDFs
+        generarPDF(students, selectedDirectory, dateInputGlobal, userInputGlobal, certType, pdfContentGlobal, mainWindow) // Llamamos a la función para generar los PDFs
       } else {
         console.error('Error: No se pueden generar los PDFs. Asegúrate de cargar los datos primero.')
       }
@@ -122,3 +123,11 @@ function clearData() {
   students = []; // Limpia el array de estudiantes
   pdfContentGlobal = ''; // Limpia el contenido del PDF adicional
 }
+
+
+
+
+
+
+
+

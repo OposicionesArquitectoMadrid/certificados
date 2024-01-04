@@ -228,10 +228,10 @@ else if (certType === 'teoría-práctico-AYTO') {
   const message = `Certificado guardado para el alumno: ${student.ALUMNO}`;
   console.log(message);
 
-
   if (index === students.length - 1) {
     console.log('CERTIFICADOS GENERADOS Y GUARDADOS PARA TODOS LOS ALMUNOS/AS');
   }
+
 }
 }
 
