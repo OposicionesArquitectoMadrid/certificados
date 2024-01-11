@@ -1,27 +1,15 @@
 [
     { 
-"ALUMNO":"GIMENA TEORÍAPRÁCTICOAYTO1",
-"DNI":"3351XXXA",
-"CURSO":"Arquitecto Ayuntamiento de Madrid 2022-2023",
-"DIRIGIDO_A":"Arquitectos superiores",
-"FECHA_INICIO":"17 de octubre de 2022",
-"FECHA_FIN":"31 de octubre de 2023",
-"DIA":"lunes",
-"HORA_INICIO":"16:30",
-"HORA_FIN":"21:00",
-"EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-},
-{ 
-    "ALUMNO":"GIMENA TEORÍAPRÁCTICOAYTO",
-    "DNI":"3351XXXA",
-    "CURSO":"Arquitecto Ayuntamiento de Madrid 2022-2023",
-    "DIRIGIDO_A":"Arquitectos superiores",
-    "FECHA_INICIO":"17 de octubre de 2022",
-    "FECHA_FIN":"31 de octubre de 2023",
-    "DIA":"lunes",
-    "HORA_INICIO":"16:30",
-    "HORA_FIN":"21:00",
-    "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-    }
+        "ALUMNO":"EJEMPLO EJEMPLO",
+        "DNI":"7114XXX7A",
+        "CURSO":"Arquitecto Hacienda Pública deL Estado 2022",
+        "DIRIGIDO_A":"Arquitectos superiores",
+        "FECHA_INICIO":"05 de septiembre de 2022",
+        "FECHA_FIN":null,
+        "DIA":"viernes",
+        "HORA INICIO":"16:30",
+        "HORA FIN":"20:30",
+        "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
+        }
   
 ]

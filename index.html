@@ -2,6 +2,8 @@
 <html>
 
 <head>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
   <meta charset="UTF-8">
   <title>Oposiciones Arquitectos Madrid Certificados</title>
 
@@ -9,6 +11,11 @@
 
 <body>
   <style>
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
     /* Estilos para simular la consola gráfica */
     .console {
   display: flex;
@@ -71,16 +78,30 @@
 
     .button-container {
       display: flex;
-      flex-direction: column;
-     
-      align-items: center;
+      flex-direction: row;
+     align-items: center;
+     justify-content: center; /* Center the buttons horizontally */
      
     }
 
-    .loadDataButton {
-      margin-top: 10px;
+    .DataButton {
+      margin: 10px;
       
     }
+
+    
+    button {
+      background-color: #3498db;
+      color: #ffffff;
+      border: 1px solid #2980b9;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #2980b9;
+    }
+    
   </style>
 
   <div id="container">
@@ -110,11 +131,14 @@
   </div>
 
   <div class="button-container">
-    <div class="loadDataButton">
+    <div class="DataButton">
       <button onclick="loadData()">Cargar datos</button>
     </div>
- 
-<button onclick="clearData()">Limpiar Datos</button>
+
+    <div class="DataButton">
+    <button onclick="clearData()">Limpiar Datos</button>
+    </div>
+
 
   </div>
 
@@ -124,19 +148,25 @@
   <div class="margin-button button-container">
     <div class="flex-container">
       <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('inscripción')" style="margin-left: 20px; margin-right: 20px;">de inscripción</button>
+        <button onclick="selectDirectoryAndGeneratePDFs('inscripción')" style="margin-left: 20px; margin-right: 20px;">inscripción</button>
       </div>
       <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('realizado')" style="margin-left: 20px; margin-right: 20px;">de realización</button>
+        <button onclick="selectDirectoryAndGeneratePDFs('realizado')" style="margin-left: 20px; margin-right: 20px;">realización</button>
       </div>
       <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')" style="margin-left: 20px; margin-right: 20px;">de supuestos prácticos</button>
+        <button onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')" style="margin-left: 20px; margin-right: 20px;">supuestos prácticos</button>
       </div>
       <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-CM')" style="margin-left: 20px; margin-right: 20px;">de teoría/práctico CM</button>
+        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-CM')" style="margin-left: 20px; margin-right: 20px;">teoría/práctico CM</button>
       </div>
       <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-AYTO')" style="margin-left: 20px; margin-right: 20px;">de teoría/práctico AYTO</button>
+        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-AYTO')" style="margin-left: 20px; margin-right: 20px;">teoría/práctico AYTO</button>
+      </div>
+      <div class="flex-item">
+        <button onclick="selectDirectoryAndGeneratePDFs('inscripción-hacienda')" style="margin-left: 20px; margin-right: 20px;">hacienda/inscrición</button>
+      </div>
+      <div class="flex-item">
+        <button onclick="selectDirectoryAndGeneratePDFs('hacienda-realizado')" style="margin-left: 20px; margin-right: 20px;">hacienda/realizado</button>
       </div>
     </div>
   </div>
