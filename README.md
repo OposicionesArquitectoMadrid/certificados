@@ -27,9 +27,6 @@ To install and run the Certificate and Diploma Generator App locally, follow the
 3. Install dependencies:
 npm install
 
-markdown
-Copy code
-
 4. Start the application:
 npm start
 
