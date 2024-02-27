@@ -10,8 +10,6 @@ const pathToCalibriBold = './Calibri Bold.ttf'
 const pathToCalibriItalic = './Calibri Italic.ttf'
 
 
-
-
 // Función para implementar el retraso
 function customDelay(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
@@ -92,7 +90,7 @@ if (certType === 'inscripción-hacienda') {
   doc.font(pathToCalibriBold).text('Oposiciones Arquitectos', { continued: true });
 
   // Parte 2 del texto
-  doc.font(pathToCalibri).text(`, este curso se imparte desde el ${student.FECHA_INICIO}, los días ${student.DIA} y jueves de ${student.HORA_INICIO} a ${student.HORA_FIN} h, y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
+  doc.font(pathToCalibri).text(`, este curso se imparte desde el ${student.FECHA_INICIO}, los días ${student.DIA} de ${student.HORA_INICIO} a ${student.HORA_FIN} h, y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
 
 
 
