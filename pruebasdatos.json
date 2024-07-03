@@ -1,27 +1,14 @@
 [
     { 
 "ALUMNO":"GIMENA SOPORTE",
-"DNI":"3351XXXA",
-"CURSO":"Arquitecto Ayuntamiento de Madrid 2022-2023",
+"DNI":"Y6069XX16A",
+"CURSO":"Supuestos Prácticos Arquitecto Ayuntamiento de Madrid 2024",
 "DIRIGIDO_A":"Arquitectos superiores",
-"FECHA_INICIO":"17 de octubre de 2022",
-"FECHA_FIN":"31 de octubre de 2023",
+"FECHA_INICIO":"12 de febrero de 2024",
+"FECHA_FIN":"30 de abril de 2024",
 "DIA":"lunes",
 "HORA_INICIO":"16:30",
 "HORA_FIN":"21:00",
 "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-},
-{ 
-    "ALUMNO":"GIMENA SOPORTE1",
-    "DNI":"3351XXXA",
-    "CURSO":"Arquitecto Ayuntamiento de Madrid 2022-2023",
-    "DIRIGIDO_A":"Arquitectos superiores",
-    "FECHA_INICIO":"17 de octubre de 2022",
-    "FECHA_FIN":"31 de octubre de 2023",
-    "DIA":"lunes",
-    "HORA_INICIO":"16:30",
-    "HORA_FIN":"21:00",
-    "EMAIL":"soporte.oposicionesarquitectos@gmail.com"
-    }
-  
+}
 ]
