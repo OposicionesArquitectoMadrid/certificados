@@ -1,0 +1,81 @@
+body {
+  font-family: "Roboto", sans-serif;
+}
+
+/* Estilos para simular la consola gráfica */
+.console {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #1e1e1e;
+  color: #ffffff;
+  font-family: monospace;
+  padding: 10px;
+  border: 1px solid #cccccc;
+  width: 60%;
+  height: 300px;
+  overflow-y: auto;
+  margin: 20px auto;
+}
+
+#container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+label {
+  margin-top: 10px;
+}
+
+input[type="number"],
+input[type="file"] {
+  margin-top: 5px;
+}
+
+button {
+  margin-top: 20px;
+
+  padding: 12px 27px;
+
+  font-size: 16px;
+}
+
+.flex-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.flex-item {
+  margin-right: 10px;
+}
+
+.margin-button {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.button-container {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center; /* Center the buttons horizontally */
+}
+
+.DataButton {
+  margin: 10px;
+}
+
+button {
+  background-color: #555555;
+  color: #f8f8f8;
+  border: 1px solid #555555;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2c2c2c;
+  border: 1px solid #2c2c2c;
+}

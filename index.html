@@ -1,296 +1,139 @@
 <!DOCTYPE html>
 <html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="./src/styles/index.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <meta charset="UTF-8" />
+    <title>OPOSICIONES ARQUITECTOS CERTIFICADOS</title>
+  </head>
 
-<head>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <body>
+    <div id="container">
+      <h2>DATOS ALUMNOS/AS Y CERTIFICADOS</h2>
 
-  <meta charset="UTF-8">
-  <title>OPOSICIONES ARQUITECTOS CERTIFICADOS</title>
+      <div class="flex-container">
+        <div class="flex-item">
+          <label for="dateInput" style="margin-top: 20px; font-size: 18px"
+            >Fecha:</label
+          >
+          <input
+            type="date"
+            id="dateInput"
+            style="margin-top: 10px; padding: 7px"
+          />
+        </div>
 
-</head>
+        <div class="flex-item">
+          <label for="userInput" style="margin-top: 20px; font-size: 18px"
+            >Total horas lectivas:</label
+          >
+          <input
+            type="text"
+            id="userInput"
+            style="margin-top: 5px; padding: 7px; width: 100px"
+          />
+        </div>
 
-<body>
-  <style>
-
-body {
-  font-family: 'Roboto', sans-serif;
-}
-
-    /* Estilos para simular la consola gráfica */
-    .console {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: #1E1E1E;
-  color: #FFFFFF;
-  font-family: monospace;
-  padding: 10px;
-  border: 1px solid #CCCCCC;
-  width: 60%;
-  height: 300px;
-  overflow-y: auto;
-  margin: 20px auto; 
-}
-
-    #container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
-
-
-    label {
-      margin-top: 10px;
-     
-    }
-
-    input[type="number"],
-    input[type="file"] {
-      margin-top: 5px;
-    
-    }
-
-    button {
-      margin-top: 20px;
-   
-      padding: 12px 27px;
-     
-      font-size: 16px;
-    }
-
-    .flex-container {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-   
-    }
-
-    .flex-item {
-      margin-right: 10px;
-  
-    }
-
-    .margin-button {
-      margin-top: 30px;
-      text-align: center;
-     
-    }
-
-    .button-container {
-      display: flex;
-      flex-direction: row;
-     align-items: center;
-     justify-content: center; /* Center the buttons horizontally */
-     
-    }
-
-    .DataButton {
-      margin: 10px;
-      
-    }
-
-    
-    button {
-      background-color: #555555;;
-      color: #f8f8f8;
-      border: 1px solid #555555;
-      border-radius: 5px;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background-color: #2c2c2c;
-      border: 1px solid #2c2c2c;
-    }
-    
-  </style>
-
-  <div id="container">
-    <h2>DATOS ALUMNOS/AS Y CERTIFICADOS</h2>
-
-    <div class="flex-container">
-      <div class="flex-item">
-        <label for="dateInput" style="margin-top: 20px; font-size: 18px;">Fecha:</label>
-        <input type="date" id="dateInput" style="margin-top: 10px; padding: 7px;">
+        <div class="flex-item">
+          <label for="jsonFileInput" style="margin-top: 20px; font-size: 18px"
+            >Seleccione un archivo JSON:</label
+          >
+          <input
+            type="file"
+            id="jsonFileInput"
+            style="margin-top: 10px; padding: 10px"
+          />
+        </div>
       </div>
 
       <div class="flex-item">
-        <label for="userInput" style="margin-top: 20px; font-size: 18px;">Total horas lectivas:</label>
-        <input type="text" id="userInput" style="margin-top: 5px; padding: 7px; width: 100px;">
-      </div>
-
-      <div class="flex-item">
-        <label for="jsonFileInput" style="margin-top: 20px; font-size: 18px;">Seleccione un archivo JSON:</label>
-        <input type="file" id="jsonFileInput" style="margin-top: 10px; padding: 10px;">
+        <label for="userPdfInput" style="margin-top: 20px; font-size: 18px"
+          >Seleccione el temario en PDF:</label
+        >
+        <input
+          type="file"
+          id="userPdfInput"
+          style="margin-top: 10px; padding: 10px"
+        />
       </div>
     </div>
 
-    <div class="flex-item">
-      <label for="userPdfInput" style="margin-top: 20px; font-size: 18px;">Seleccione el temario en PDF:</label>
-      <input type="file" id="userPdfInput" style="margin-top: 10px; padding: 10px;">
-    </div>
-  </div>
-
-  <div class="button-container">
-    <div class="DataButton">
-      <button onclick="loadData()">CARGAR DATOS</button>
-    </div>
-
-    <div class="DataButton">
-    <button onclick="clearData()">LIMPIAR DATOS</button>
-    </div>
-
-
-  </div>
-
-  <!-- Elemento para simular la consola -->
-  <div id="console" class="console"></div>
-
-  <div class="margin-button button-container">
-    <div class="flex-container">
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('inscripción')" style="margin-left: 20px; margin-right: 20px;">inscripción</button>
+    <div class="button-container">
+      <div class="DataButton">
+        <button onclick="loadData()">CARGAR DATOS</button>
       </div>
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('realizado')" style="margin-left: 20px; margin-right: 20px;">realización</button>
-      </div>
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')" style="margin-left: 20px; margin-right: 20px;">supuestos prácticos</button>
-      </div>
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-CM')" style="margin-left: 20px; margin-right: 20px;">teoría/práctico CM</button>
-      </div>
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-AYTO')" style="margin-left: 20px; margin-right: 20px;">teoría/práctico AYTO</button>
-      </div>
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('inscripción-hacienda')" style="margin-left: 20px; margin-right: 20px;">hacienda/inscrición</button>
-      </div>
-      <div class="flex-item">
-        <button onclick="selectDirectoryAndGeneratePDFs('hacienda-realizado')" style="margin-left: 20px; margin-right: 20px;">hacienda/realizado</button>
+
+      <div class="DataButton">
+        <button onclick="clearData()">LIMPIAR DATOS</button>
       </div>
     </div>
-  </div>
 
-  <script>
+    <!-- Elemento para simular la consola -->
+    <div id="console" class="console"></div>
 
-    let dateInputGlobal = ''; 
-    let userInputGlobal = '';
-  
-    function loadData() {
-      const fileInput = document.getElementById('jsonFileInput');
-      const pdfInput = document.getElementById('userPdfInput');
-      const file = fileInput.files[0];
-      const pdfFile = pdfInput.files[0];
-  
-      const dateInput = document.getElementById('dateInput').valueAsDate;
-      const userInput = document.getElementById('userInput').value;
-  
-      const formattedDate = dateInput.toLocaleDateString('es-ES', {
-        day: 'numeric',
-        month: 'long',
-        year: 'numeric'
-      });
-  
-      const reader = new FileReader();
-  
-      // Verifica si se ha seleccionado un archivo PDF adicional
-      if (pdfFile) {
-        const pdfReader = new FileReader();
-        pdfReader.onload = function (event) {
-          const pdfContent = event.target.result;
-          console.log('Contenido del PDF adicional cargado');
-  
-         
-          reader.onload = function (event) {
-            const jsonContent = event.target.result;
-            console.log('Contenido del JSON:', jsonContent);
-  
-            const data = {
-              jsonContent: jsonContent,
-              userInput: userInput,
-              dateInput: formattedDate,
-              pdfContent: pdfContent
-            };
-  
-            dateInputGlobal = formattedDate;
-            userInputGlobal = userInput;
-  
-            window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
-            window.ipcRenderer.send('set-user-input-global', userInputGlobal);
-  
-            window.ipcRenderer.send('load-data', data);
-  
-            const consoleElement = document.getElementById('console');
-            const message = `Fecha: ${formattedDate}\nHoras Lectivas: ${userInput}\nDatos del JSON: ${jsonContent}\nContenido del PDF cargado (TEMARIO)`;
-
-            consoleElement.innerText = message;
-          };
-         
-          // Inicia la lectura del archivo JSON
-          reader.readAsText(file);
-        };
-  
-        // Inicia la lectura del PDF del usuario
-        pdfReader.readAsDataURL(pdfFile);
-      } else {
-        // Si no se selecciona un archivo PDF, solo lee el contenido del archivo JSON
-        reader.onload = function (event) {
-          const jsonContent = event.target.result;
-          console.log('Contenido del JSON:', jsonContent);
-  
-          const data = {
-            jsonContent: jsonContent,
-            userInput: userInput,
-            dateInput: formattedDate,
-            pdfContent: '' 
-          };
-  
-          dateInputGlobal = formattedDate;
-          userInputGlobal = userInput;
-  
-          window.ipcRenderer.send('set-date-input-global', dateInputGlobal);
-          window.ipcRenderer.send('set-user-input-global', userInputGlobal);
-  
-          window.ipcRenderer.send('load-data', data);
-  
-          const consoleElement = document.getElementById('console');
-          const message = `Fecha: ${formattedDate}\nHoras Lectivas: ${userInput}\nDatos del JSON: ${jsonContent}\nNo se cargó un PDF ADICIONAL`;
-
-          consoleElement.innerText = message;
-        };
-  
-       
-        reader.readAsText(file);
-      }
-    }
-  
-    function selectDirectoryAndGeneratePDFs(certType) {
-      window.ipcRenderer.send('select-directory', certType);
-    }
-  // función para limpiar datos en el lado del renderizado
-  function clearData() {
-    // limpia datos
-    dateInputGlobal = '';
-    userInputGlobal = '';
-    students = [];
-    pdfContentGlobal = '';
-    
-    // Limpia la consola
-    const consoleElement = document.getElementById('console');
-    consoleElement.innerText = 'Datos limpiados.';
-    
-        // Restablece los valores de los elementos de entrada de archivo
-        const fileInput = document.getElementById('jsonFileInput');
-    const pdfInput = document.getElementById('userPdfInput');
-    fileInput.value = ''; // Limpiar el valor del input de JSON
-    pdfInput.value = ''; // Limpiar el valor del input de PDF adicional
-    
-    // También envía una señal al proceso principal (main.js) para limpiar datos
-    window.ipcRenderer.send('clear-data');
-  }
-  </script>
-  
-</body>
-
+    <div class="margin-button button-container">
+      <div class="flex-container">
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('inscripción')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            inscripción
+          </button>
+        </div>
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('realizado')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            realización
+          </button>
+        </div>
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('supuestos-prácticos')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            supuestos prácticos
+          </button>
+        </div>
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-CM')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            teoría/práctico CM
+          </button>
+        </div>
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('teoría-práctico-AYTO')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            teoría/práctico AYTO
+          </button>
+        </div>
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('inscripción-hacienda')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            hacienda/inscrición
+          </button>
+        </div>
+        <div class="flex-item">
+          <button
+            onclick="selectDirectoryAndGeneratePDFs('hacienda-realizado')"
+            style="margin-left: 20px; margin-right: 20px"
+          >
+            hacienda/realizado
+          </button>
+        </div>
+      </div>
+    </div>
+    <script src="./src/js/index.js"></script>
+  </body>
 </html>
