@@ -66,6 +66,15 @@ async function mergePdfFiles(outputFileName, outputPath) {
   const outReturnPath =
     `${outPutResultPath}RESULTADO//${outputFileName}`.trim();
 
+  const folderName = `${outPutResultPath}/RESULTADO`;
+  try {
+    if (!fs.existsSync(folderName)) {
+      fs.mkdirSync(folderName);
+    }
+  } catch (err) {
+    console.error(err);
+  }
+
   console.log("pdf1Path", pdf1Path);
   console.log("pdf2Path", pdf2Path);
   console.log("--------------------IMPORTANTE-----------------");
