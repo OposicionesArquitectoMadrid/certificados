@@ -1,4 +1,4 @@
 node_modules/
 .env
 src/archivos_relevantes/
-src/js/PDF_SIN_TEMARIO/
+src/PDF_SIN_TEMARIO/*
