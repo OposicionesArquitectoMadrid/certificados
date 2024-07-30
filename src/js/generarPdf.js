@@ -1,5 +1,3 @@
-//TODO: Refactorizar esta funcionalidad para eliminar redundancias
-
 const { mergePdfFiles } = require("./combinarpdf");
 const PDFDocument = require("pdfkit");
 
@@ -67,7 +65,12 @@ async function generarPDF(
 
     //Parte 1 del texto
     let text1 = "";
-    let text2 = "";
+    let text2 = ` e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+  
+ Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
+ Se adjunta el desglose de los temas impartidos.
+
+ Y para que conste, firma en Madrid a ${formattedDate}`;
     if (certType === "inscripción" && certType === "inscripción-hacienda") {
       text1 = ` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
       text2 = `, este curso se imparte desde el ${student.FECHA_INICIO}, los días ${student.DIA} de ${student.HORA_INICIO} a ${student.HORA_FIN} h, y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
@@ -78,43 +81,19 @@ async function generarPDF(
 Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "realizado") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      text2 = `e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
-  
-Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
-Se adjunta el desglose de los temas impartidos.
-
-Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "supuestos-prácticos") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia  `;
-      text2 = `e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+      text2 = ` e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
 
 
 
 Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "teoría-práctico-CM") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      text2 = `e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
-  
-Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
-Se adjunta el desglose de los temas impartidos.
-
-Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "teoría-práctico-AYTO") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      text2 = `e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
-   
- Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
- Se adjunta el desglose de los temas impartidos.
- 
- Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "hacienda-realizado") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      text2 = `e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
-   
- Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
- Se adjunta el desglose de los temas impartidos.
- 
- Y para que conste, firma en Madrid a ${formattedDate}`;
     }
 
     // todo lo q es contenido del pdf
