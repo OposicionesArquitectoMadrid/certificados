@@ -55,7 +55,7 @@ async function generarPDF(
     const doc = new PDFDocument({ size: "A4" });
     const studentName = student.ALUMNO.replaceAll(" ", "_");
 
-    const outputFileName = `${studentName}_CERTIFICADO_SP_AT_AYTO_2020_2021.pdf`; //TODO: CAMBIAR NOMBRE PARA EL ARCHIVO
+    const outputFileName = `${studentName}_CERTIFICADO_AT_CM_EXT_2022.pdf`; //TODO: CAMBIAR NOMBRE PARA EL ARCHIVO
     const outputPath = path.join(selectedDirectory, outputFileName); // se guarda donde selecciona el usuario
 
     //formatear fecha
@@ -89,10 +89,11 @@ Y para que conste, firma en Madrid a ${formattedDate}`;
 
 Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "teoría-práctico-CM") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso extraordinario de preparación para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
     } else if (certType === "teoría-práctico-AYTO") {
       //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
     } else if (certType === "hacienda-realizado") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
     }
@@ -100,7 +101,7 @@ Y para que conste, firma en Madrid a ${formattedDate}`;
     // todo lo q es contenido del pdf
     //pagina membretada (fondo) común para todos
 
-    doc.image("./riveteFirma20240730.jpg", 0, 0, { width: 595, height: 842 }); // Tamaño A4: 595 x 842 puntos
+    doc.image("./riveteFirma20240731.jpg", 0, 0, { width: 595, height: 842 }); // Tamaño A4: 595 x 842 puntos
     //Modificado 23/07/2024 ./admin5.jpg por admin.jpg
 
     // Certificado de inscripción
@@ -121,7 +122,7 @@ Y para que conste, firma en Madrid a ${formattedDate}`;
     // Finalizar el PDF
     doc.end();
     try {
-      await customDelay(50);
+      await customDelay(150);
       await mergePdfFiles(outputFileName, outputPath);
     } catch (error) {
       console.error("Error al generar y combinar el PDF:", error.message);
