@@ -72,7 +72,7 @@ async function generarPDF(
 
  Y para que conste, firma en Madrid a ${formattedDate}`;
     if (certType === "inscripción" && certType === "inscripción-hacienda") {
-      text1 = ` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      text1 = ` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
       text2 = `, este curso se imparte desde el ${student.FECHA_INICIO}, los días ${student.DIA} de ${student.HORA_INICIO} a ${student.HORA_FIN} h, y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
 
 
@@ -80,28 +80,28 @@ async function generarPDF(
 
 Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "realizado") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
     } else if (certType === "supuestos-prácticos") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia  `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación  `;
       text2 = ` e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
 
 
 
 Y para que conste, firma en Madrid a ${formattedDate}`;
     } else if (certType === "teoría-práctico-CM") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso extraordinario de preparación para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de prepaparación de la convocatoria extraordinaria para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
+      //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
     } else if (certType === "teoría-práctico-AYTO") {
-      //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
     } else if (certType === "hacienda-realizado") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia `;
+      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
     }
 
     // todo lo q es contenido del pdf
     //pagina membretada (fondo) común para todos
 
-    doc.image("./riveteFirma20240731.jpg", 0, 0, { width: 595, height: 842 }); // Tamaño A4: 595 x 842 puntos
+    doc.image("./admin.jpg", 0, 0, { width: 595, height: 842 }); // Tamaño A4: 595 x 842 puntos
     //Modificado 23/07/2024 ./admin5.jpg por admin.jpg
 
     // Certificado de inscripción
@@ -115,7 +115,7 @@ Y para que conste, firma en Madrid a ${formattedDate}`;
     // "Oposiciones Arquitectos" en negrita
     doc
       .font(pathToCalibriBold)
-      .text("Oposiciones Arquitectos", { continued: true });
+      .text("Oposiciones Arquitectos S.L.", { continued: true });
 
     // Parte 2 del texto
     doc.font(pathToCalibri).text(text2, { width: 400, align: "left" });
