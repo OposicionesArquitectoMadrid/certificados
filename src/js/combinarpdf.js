@@ -32,21 +32,21 @@ async function combinePDFs(pdf1Path, pdf2Path, outputPath) {
     const mergedPdf = await PDFLibDocument.create();
 
     // Copiar páginas del primer PDF
-    for (const page of pdf1Pages) {
-      const [copiedPage] = await mergedPdf.copyPages(
-        pdf1Doc,
-        pdf1Doc.getPageIndices()
-      );
-      mergedPdf.addPage(copiedPage);
+    const pdf1PagesCopy = await mergedPdf.copyPages(
+      pdf1Doc,
+      pdf1Doc.getPageIndices()
+    );
+    for (const page of pdf1PagesCopy) {
+      mergedPdf.addPage(page);
     }
 
     // Copiar páginas del segundo PDF
-    for (const page of pdf2Pages) {
-      const [copiedPage] = await mergedPdf.copyPages(
-        pdf2Doc,
-        pdf2Doc.getPageIndices()
-      );
-      mergedPdf.addPage(copiedPage);
+    const pdf2PagesCopy = await mergedPdf.copyPages(
+      pdf2Doc,
+      pdf2Doc.getPageIndices()
+    );
+    for (const page of pdf2PagesCopy) {
+      mergedPdf.addPage(page);
     }
     const mergedPdfBytes = await mergedPdf.save();
     fs.writeFileSync(path.resolve(outputPath), mergedPdfBytes);
