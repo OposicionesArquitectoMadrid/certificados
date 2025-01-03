@@ -55,7 +55,7 @@ async function generarPDF(
     const doc = new PDFDocument({ size: "A4" });
     const studentName = student.ALUMNO.replaceAll(" ", "_");
 
-    const outputFileName = `${studentName}_CERTIFICADO_AT_CM_EXT_2022.pdf`; //TODO: CAMBIAR NOMBRE PARA EL ARCHIVO
+    const outputFileName = `${studentName}_CERTIFICADO_A_CM_2022.pdf`; //TODO: CAMBIAR NOMBRE PARA EL ARCHIVO
     const outputPath = path.join(selectedDirectory, outputFileName); // se guarda donde selecciona el usuario
 
     //formatear fecha
@@ -65,12 +65,18 @@ async function generarPDF(
 
     //Parte 1 del texto
     let text1 = "";
-    let text2 = ` e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+    let text2 = `\nEste curso fue organizado e impartido por la academia desde el ${student.FECHA_INICIO} al ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+      
+ Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
+ Se adjunta el desglose de los temas impartidos.
+
+ Y para que conste, se firma el presente certificado en Madrid, a ${formattedDate}`;
+    /*` e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
   
  Durante el curso se han impartido los temarios publicados en las correspondientes convocatorias.
  Se adjunta el desglose de los temas impartidos.
 
- Y para que conste, firma en Madrid a ${formattedDate}`;
+ Y para que conste, se firma el presente certificado en Madrid, a ${formattedDate}`;*/
     if (certType === "inscripción" && certType === "inscripción-hacienda") {
       text1 = ` con DNI: ${student.DNI}, se encuentra inscrito/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
       text2 = `, este curso se imparte desde el ${student.FECHA_INICIO}, los días ${student.DIA} de ${student.HORA_INICIO} a ${student.HORA_FIN} h, y hasta el día de emisión del presente certificado, se ha impartido un total de ${userInput} horas de clases Streaming.
@@ -78,22 +84,22 @@ async function generarPDF(
 
 											   
 
-Y para que conste, firma en Madrid a ${formattedDate}`;
+Y para que conste, se firma el presente certificado en Madrid, a ${formattedDate}`;
     } else if (certType === "realizado") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
+      text1 = `, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A} `;
     } else if (certType === "supuestos-prácticos") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación  `;
-      text2 = ` e impartido desde el ${student.FECHA_INICIO} hasta el ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
+      text1 = `, ha participado como alumno/a en el Curso de Preparación de ${student.CURSO}, dirigido a ${student.DIRIGIDO_A}.`;
+      text2 = `\nEste curso fue organizado e impartido por la academia desde el ${student.FECHA_INICIO} al ${student.FECHA_FIN} con una duración total de ${userInput} horas lectivas.
 
 
 
-Y para que conste, firma en Madrid a ${formattedDate}`;
+Y para que conste, se firma el presente certificado en Madrid, a ${formattedDate}`;
     } else if (certType === "teoría-práctico-CM") {
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de prepaparación de la convocatoria extraordinaria para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
+      text1 = `, ha participado como alumno/a en el Curso de Preparación para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}.`;
       //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones de la Comunidad de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
     } else if (certType === "teoría-práctico-AYTO") {
       //text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
-      text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
+      text1 = `, ha participado como alumno/a en el Curso de Preparación para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}.`;
     } else if (certType === "hacienda-realizado") {
       text1 = ` con DNI: ${student.DNI}, ha participado como alumno/a en el curso de preparación teórico y práctico, para las oposiciones del Ayuntamiento de Madrid, dirigido a ${student.DIRIGIDO_A}, organizado por la academia de formación `;
     }
@@ -101,32 +107,36 @@ Y para que conste, firma en Madrid a ${formattedDate}`;
     // todo lo q es contenido del pdf
     //pagina membretada (fondo) común para todos
 
-    doc.image("./admin.jpg", 0, 0, { width: 595, height: 842 }); // Tamaño A4: 595 x 842 puntos
-    //Modificado 23/07/2024 ./admin5.jpg por admin.jpg
+    doc.image("./riveteFirma20250103.jpg", 0, 0, { width: 595, height: 842 }); // Tamaño A4: 595 x 842 puntos
+    //Modificado 03/01/2025 por riveteFirma20250103.jpg
 
     // Certificado de inscripción
     doc.font(pathToCalibri).fillColor("black").fontSize(10).lineGap(11);
 
     // Parte 1 del texto con el nombre del alumno en negrita
-    doc.font(pathToCalibri).text(`Que Don/Doña `, 90, 290, { continued: true });
-    doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
-    doc.font(pathToCalibri).text(text1, { continued: true });
-
-    // "Oposiciones Arquitectos" en negrita
+    doc.font(pathToCalibri).text(`La academia `, 90, 290, { continued: true });
     doc
       .font(pathToCalibriBold)
-      .text("Oposiciones Arquitectos S.L.", { continued: true });
+      .text(`"Oposiciones Arquitectos"`, { continued: true });
+    doc
+      .font(pathToCalibri)
+      .text(` certifica que Don/Doña `, 90, 290, { continued: true });
+    doc.font(pathToCalibriBold).text(`${student.ALUMNO}`, { continued: true });
+    doc.font(pathToCalibri).text(`, con DNI `, { continued: true });
+    doc.font(pathToCalibriBold).text(`${student.DNI}`, { continued: true });
+    doc.font(pathToCalibri).text(text1, { continued: true });
 
     // Parte 2 del texto
     doc.font(pathToCalibri).text(text2, { width: 400, align: "left" });
     // Finalizar el PDF
     doc.end();
-    try {
-      await customDelay(150);
-      await mergePdfFiles(outputFileName, outputPath);
-    } catch (error) {
-      console.error("Error al generar y combinar el PDF:", error.message);
-    }
+    if (certType !== "supuestos-prácticos")
+      try {
+        await customDelay(150);
+        await mergePdfFiles(outputFileName, outputPath);
+      } catch (error) {
+        console.error("Error al generar y combinar el PDF:", error.message);
+      }
 
     // // Enviar correo
     //   const invoice = `${student.ALUMNO}_certificado.pdf`;
